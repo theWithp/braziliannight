@@ -1,0 +1,8 @@
+Library notes
+   My understanding of the documentation is that we do not need to directly register the class with the @Mod entry point.
+   In fact I believe that all registration can get called out of the @Mod FML load event.
+TODO
+   Add a gradle clean task
+      delete *.~ files
+
+
