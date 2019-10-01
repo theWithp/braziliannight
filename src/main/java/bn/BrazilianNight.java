@@ -14,16 +14,18 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 @Mod(modid = MOD_ID, name = MOD_NAME, version = VERSION, acceptedMinecraftVersions = MC_VERSIONS)
-public class BrazilianNight {
+public class BrazilianNight
+{
 
-    @SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = SERVER_PROXY_CLASS)
-    public static CommonProxy proxy;
+  @SidedProxy(clientSide = CLIENT_PROXY_CLASS, serverSide = SERVER_PROXY_CLASS)
+  public static CommonProxy proxy;
 
-    // Registration of models happens in clientProxy, registration of entities
-    // happens in the static EntityInit class
-    @EventHandler
-    public void load(FMLInitializationEvent ev) {
-	proxy.serverRegister();
-	proxy.clientRegister();
+  // Registration of models happens in clientProxy, registration of entities
+  // happens in the static EntityInit class
+  @EventHandler
+  public void load (FMLInitializationEvent ev)
+    {
+      proxy.serverRegister();
+      proxy.clientRegister();
     }
 }

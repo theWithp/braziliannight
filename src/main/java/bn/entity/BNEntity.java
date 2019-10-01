@@ -12,80 +12,103 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
-public abstract class BNEntity extends EntityMob {
+public abstract class BNEntity extends EntityMob
+{
+  // instance variables
+  private int ticksInState = 0;
 
-    public BNEntity(World worldIn) {
-	super(worldIn);
+  // constants
+  private static final DataParameter<String> MARSHALED_STATE = EntityDataManager.<String>createKey(BNEntity.class,
+      DataSerializers.STRING);
+
+  // constructor
+  public BNEntity(World worldIn)
+    {
+      super(worldIn);
     }
 
-    private int ticksInState = 0;
-    private static final DataParameter<String> MARSHALED_STATE = EntityDataManager.<String>createKey(BNEntity.class,
-	    DataSerializers.STRING);
-
-    private static String marshal(BNEntityState state) {
-	return state.name();
+  // initialization methods
+  @Override
+  protected void entityInit ()
+    {
+      super.entityInit();
+      dataManager.register(MARSHALED_STATE, marshal(BNEntityState.IDLE));
     }
 
-    private static BNEntityState unmarshal(String s) {
-	return EnumUtils.getEnum(BNEntityState.class, s);
+  // query methods
+
+  protected BNEntityState getState ()
+    {
+      return unmarshal(dataManager.get(MARSHALED_STATE));
     }
 
-    @Override
-    public boolean isAIDisabled() {
-	return false;
+  public int getTicksInCurrentAction ()
+    {
+      return ticksInState;
     }
 
-    @Override
-    protected void entityInit() {
-	super.entityInit();
-	dataManager.register(MARSHALED_STATE, marshal(BNEntityState.IDLE));
+  public boolean isSpinning ()
+    {
+      return getState() == BNEntityState.SPINNING;
     }
 
-    @Override
-    public void onUpdate() {
-	super.onUpdate();
-	ticksInState = getTicksInCurrentAction() + 1;
+  public boolean isCasting ()
+    {
+      return getState() == BNEntityState.CASTING;
     }
 
-    protected BNEntityState getState() {
-	return unmarshal(dataManager.get(MARSHALED_STATE));
+  @Override
+  public boolean isAIDisabled ()
+    {
+      return false;
     }
 
-    protected void setState(BNEntityState state) {
-	// the client is not allowed to set entity state
-	if (!world.isRemote && state != getState())
-	    ticksInState = 0;
-	dataManager.set(MARSHALED_STATE, marshal(state));
+  protected abstract float modifyDamageAmount (DamageSource d, float amount);
+
+  @Override
+  public void onUpdate ()
+    {
+      super.onUpdate();
+      ticksInState = getTicksInCurrentAction() + 1;
     }
 
-    protected void applyEntityAttributes(double maxHealth) {
-	super.applyEntityAttributes();
-	getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(BNConstants.FOLLOW_RANGE);
-	getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(maxHealth);
+  protected void setState (BNEntityState state)
+    {
+      // the client is not allowed to set entity state
+      if (!world.isRemote && state != getState())
+        ticksInState = 0;
+      dataManager.set(MARSHALED_STATE, marshal(state));
     }
 
-    @Override
-    public boolean attackEntityFrom(DamageSource d, float amount) {
-	amount = modifyDamageAmount(d, amount);
-	if (amount <= 0) {
-	    heal(-amount);
-	    return false;
-	}
-	return super.attackEntityFrom(d, amount);
+  // state transition and action methods
+  @Override
+  protected void applyEntityAttributes ()
+    {
+      super.applyEntityAttributes();
+      getEntityAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(BNConstants.FOLLOW_RANGE);
     }
 
-    protected abstract float modifyDamageAmount(DamageSource d, float amount);
-
-    public int getTicksInCurrentAction() {
-	return ticksInState;
+  @Override
+  public boolean attackEntityFrom (DamageSource d, float amount)
+    {
+      amount = modifyDamageAmount(d, amount);
+      if (amount <= 0)
+        {
+          heal(-amount);
+          return false;
+        }
+      hurtResistantTime = BNConstants.BOSS_RESIST_TIME;
+      return super.attackEntityFrom(d, amount);
     }
 
-    public boolean isSpinning() {
-	return getState() == BNEntityState.SPINNING;
+  // utility methods
+  private static String marshal (BNEntityState state)
+    {
+      return state.name();
     }
 
-    public boolean isCasting() {
-	return getState() == BNEntityState.CASTING;
+  private static BNEntityState unmarshal (String s)
+    {
+      return EnumUtils.getEnum(BNEntityState.class, s);
     }
-
 }

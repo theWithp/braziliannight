@@ -1,0 +1,10 @@
+These standards range from least to most specific.
+They are all worth a read though much of the GNU C/C++ standard isn't applicable here.
+
+The Eclipse auto-formatting tools can be used to (mostly) follow the gnu java standard for formatting.
+However, more semantic structural guides have to be followed by you, the developer, manually.
+Things can be fixed later, but doing things right the first time is often the best choice.
+
+https://www.gnu.org/prep/standards/standards.html
+https://www.oracle.com/technetwork/java/codeconventions-150003.pdf
+https://www.gnu.org/software/gnu-crypto/code-formatting.html
