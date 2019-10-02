@@ -21,6 +21,8 @@ public abstract class BNEntity extends EntityMob
   private static final DataParameter<String> MARSHALED_STATE = EntityDataManager.<String>createKey(BNEntity.class,
       DataSerializers.STRING);
 
+  private static final int BOSS_RESIST_TIME = BNConstants.BOSS_RESIST_TIME;
+
   // constructor
   public BNEntity(World worldIn)
     {
@@ -91,14 +93,17 @@ public abstract class BNEntity extends EntityMob
   @Override
   public boolean attackEntityFrom (DamageSource d, float amount)
     {
-      amount = modifyDamageAmount(d, amount);
-      if (amount <= 0)
+
+      float newAmount = modifyDamageAmount(d, amount);
+      if (newAmount <= 0)
         {
-          heal(-amount);
+          heal(-newAmount);
           return false;
         }
-      hurtResistantTime = BNConstants.BOSS_RESIST_TIME;
-      return super.attackEntityFrom(d, amount);
+      if (!super.attackEntityFrom(d, newAmount))
+        return false;
+      hurtResistantTime = BOSS_RESIST_TIME;
+      return true;
     }
 
   // utility methods

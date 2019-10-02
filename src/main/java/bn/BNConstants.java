@@ -26,7 +26,7 @@ public class BNConstants
   public static final float BOSS_HURT_CAP = 7f;
   public static final int WHIRLWIND_PROBABILITY = 10;
   public static final int WHIRLWIND_COOLDOWN = 20;
-  public static final double WHIRLWIND_SPEED = 0.5;
+  public static final double WHIRLWIND_SPEED = 0.2;
   public static final double WHIRLWIND_TARGET_RANGE = 32;
   public static final int WHIRLWIND_LIFETIME = 500;// I made a number up, need
                                                    // to fine tune
@@ -46,7 +46,7 @@ public class BNConstants
       WHITE_WITCHI.put("SHOT_CLOCK", 10);
       WHITE_WITCHF.put("ATTACK_RANGE", 64.0f);
       WHITE_WITCHF.put("MAGIC_DAMAGE_MULT", 0.8f);
-      WHITE_WITCHD.put("MOVE_SPEED", 0.5);
+      WHITE_WITCHD.put("MOVE_SPEED", 0.2);
       WHITE_WITCHI.put("WHIRLWIND_RATE", 4);
       WHITE_WITCHI.put("HURRICANE_RATE", 2);
       WHITE_WITCHD.put("HURRICANE_SIZE", 2.0);

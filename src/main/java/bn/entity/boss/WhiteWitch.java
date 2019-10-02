@@ -151,8 +151,7 @@ public class WhiteWitch extends BNBossEntity
     }
 
   /*
-   * think this will need to be refactored to put the orbit and spin into the
-   * model code as it is my understanding that onUpdate is server only
+   * think this should be refactored to put the orbit and spin into the model code
    */
   @Override
   public void onUpdate ()
