@@ -1,8 +1,8 @@
 package bn.entity.boss;
 
 import java.util.List;
-import java.util.Map;
 
+import bn.BNConstant;
 import bn.BNConstants;
 import bn.entity.projectile.Whirlwind;
 import bn.state.BNEntityState;
@@ -28,22 +28,20 @@ public class WhiteWitch extends BNBossEntity
   private int hurricaneCooldown = 0;
 
   // constant declarations
-  private static final Map<String, Integer> WHITE_WITCHI = BNConstants.WHITE_WITCHI;
-  private static final Map<String, Double> WHITE_WITCHD = BNConstants.WHITE_WITCHD;
-  private static final Map<String, Float> WHITE_WITCHF = BNConstants.WHITE_WITCHF;
+  private static final BNConstant WHITE_WITCH = BNConstants.WHITE_WITCH;
 
-  private static final double MOVE_SPEED = WHITE_WITCHD.get("MOVE_SPEED");
-  private static final int SHOT_CLOCK = WHITE_WITCHI.get("SHOT_CLOCK");
-  private static final float ATTACK_RANGE = WHITE_WITCHF.get("ATTACK_RANGE");
-  private static final double MAX_HEALTH = WHITE_WITCHD.get("MAX_HEALTH");
-  private static final float WIDTH = WHITE_WITCHF.get("WIDTH");
-  private static final float HEIGHT = WHITE_WITCHF.get("HEIGHT");
-  private static final int ARMOR = WHITE_WITCHI.get("ARMOR");
-  private static final float MAGIC_DAMAGE_MULT = WHITE_WITCHF.get("MAGIC_DAMAGE_MULT");
-  private static final int WHIRLWIND_RATE = WHITE_WITCHI.get("WHIRLWIND_RATE");
-  private static final int HURRICANE_RATE = WHITE_WITCHI.get("HURRICANE_RATE");
-  private static final float HURRICANE_FACTOR = WHITE_WITCHF.get("HURRICANE_FACTOR");
-  private static final double HURRICANE_SIZE = WHITE_WITCHD.get("HURRICANE_SIZE");
+  private static final double MOVE_SPEED = WHITE_WITCH.getDouble("MOVE_SPEED");
+  private static final int SHOT_CLOCK = WHITE_WITCH.getInt("SHOT_CLOCK");
+  private static final float ATTACK_RANGE = WHITE_WITCH.getFloat("ATTACK_RANGE");
+  private static final double MAX_HEALTH = WHITE_WITCH.getDouble("MAX_HEALTH");
+  private static final float WIDTH = WHITE_WITCH.getFloat("WIDTH");
+  private static final float HEIGHT = WHITE_WITCH.getFloat("HEIGHT");
+  private static final int ARMOR = WHITE_WITCH.getInt("ARMOR");
+  private static final float MAGIC_DAMAGE_MULT = WHITE_WITCH.getFloat("MAGIC_DAMAGE_MULT");
+  private static final int WHIRLWIND_RATE = WHITE_WITCH.getInt("WHIRLWIND_RATE");
+  private static final int HURRICANE_RATE = WHITE_WITCH.getInt("HURRICANE_RATE");
+  private static final float HURRICANE_FACTOR = WHITE_WITCH.getFloat("HURRICANE_FACTOR");
+  private static final double HURRICANE_SIZE = WHITE_WITCH.getDouble("HURRICANE_SIZE");
 
   // constructors
   public WhiteWitch(World w)
