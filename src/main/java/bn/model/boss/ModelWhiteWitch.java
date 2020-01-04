@@ -105,14 +105,17 @@ public class ModelWhiteWitch extends ModelBase
             parts.get(s).rotateAngleX = leftArmRot;
 
         }
+      
+      // Sine function governing boss' and balls' initial y axis motion
       GL11.glPushMatrix();
       GL11.glTranslatef(0, (float) (Math.sin(tickAge / 10) / 17), 0);
       for (String s : parts.keySet())
         if (s.contains("Ball"))
           parts.get(s).render(scale);
 
+      // Sine function governing boss' y axis motion
       GL11.glPushMatrix();
-      GL11.glTranslatef(0, (float) Math.sin(tickAge / 10 - 2), 0);
+      GL11.glTranslatef(0, 0.25f * (float) Math.sin(tickAge / 10 - 2), 0);
 
       for (String s : parts.keySet())
         {
