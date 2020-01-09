@@ -2,6 +2,7 @@ package bn.dimension;
 
 import javax.annotation.Nullable;
 
+import bn.BNConstants;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
@@ -10,8 +11,10 @@ import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
 import net.minecraftforge.common.BiomeManager.BiomeType;
 import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.fml.common.Mod.EventHandler;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.registries.IForgeRegistry;
 
 public class BNInitWorldGen
 {
@@ -22,8 +25,7 @@ public class BNInitWorldGen
   public static final WorldType PORT_WORLD_TYPE = new BNWorldType();
   public static final Biome PORT_BIOME = new BNBiomePortallis();
 
-  @EventHandler
-  public static void onInit (FMLInitializationEvent ev)
+  public static void onInit ()
     {
       BiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(PORT_BIOME, 0));
       BiomeDictionary.addTypes(PORT_BIOME, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.SPOOKY);
@@ -36,8 +38,20 @@ public class BNInitWorldGen
       for (int i = -2; i > Integer.MIN_VALUE; i--)
         {
           if (!DimensionManager.isDimensionRegistered(i * 11))
-            return i;
+            return i * 11;
         }
       return null;
     }
+
+  @Mod.EventBusSubscriber(modid = BNConstants.MOD_ID)
+  public static class RegistrationHandler
+  {
+
+    @SubscribeEvent
+    public static void onEvent (RegistryEvent.Register<Biome> event)
+      {
+        final IForgeRegistry<Biome> registry = event.getRegistry();
+        registry.register(PORT_BIOME.setRegistryName(BNConstants.MOD_ID, PORT_NAME));
+      }
+  }
 }

@@ -7,6 +7,7 @@ import static bn.BNConstants.MOD_NAME;
 import static bn.BNConstants.SERVER_PROXY_CLASS;
 import static bn.BNConstants.VERSION;
 
+import bn.dimension.BNInitWorldGen;
 import bn.item.DimMirror;
 import bn.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
@@ -29,6 +30,8 @@ public class BrazilianNight
     {
       proxy.serverRegister();
       proxy.clientRegister();
+      BNInitWorldGen.onInit();
+
     }
 
   @EventHandler

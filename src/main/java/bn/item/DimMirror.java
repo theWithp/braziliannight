@@ -2,6 +2,7 @@ package bn.item;
 
 import javax.annotation.Nonnull;
 
+import bn.dimension.BNTeleporter;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -43,10 +44,10 @@ public class DimMirror extends BNItem
         return success(playerIn, handIn);
       if (playerIn.dimension == PORT_ID)
         {
-          playerIn.changeDimension(0);
+          playerIn.changeDimension(0, BNTeleporter.TELEPORTER);
         } else
         {
-          playerIn.changeDimension(PORT_ID);
+          playerIn.changeDimension(PORT_ID, BNTeleporter.TELEPORTER);
         }
       return pass(playerIn, handIn);
     }
