@@ -24,6 +24,7 @@ public class BNInitWorldGen
       BNWorldProvider.class, false);
   public static final WorldType PORT_WORLD_TYPE = new BNWorldType();
   public static final Biome PORT_BIOME = new BNBiomePortallis();
+  public static final int DEFAULT_FLOOR_POS = 32;
 
   public static void onInit ()
     {

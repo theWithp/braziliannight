@@ -21,7 +21,7 @@ public class BNChunkGenerator implements IChunkGenerator
 {
   private ChunkPrimer primer = new ChunkPrimer();
   private World world;
-  private static final int BASE_HEIGHT = 30;
+  private static final int BASE_HEIGHT = BNInitWorldGen.DEFAULT_FLOOR_POS;
   // TODO: confirm that diamond is unbreakable
   private static final IBlockState FLOOR_BLOCK = Blocks.BLACK_GLAZED_TERRACOTTA.setBlockUnbreakable().getDefaultState();
   // TODO: confirm this wont spawn lycanites or whatever
