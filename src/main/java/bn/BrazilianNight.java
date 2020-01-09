@@ -7,11 +7,13 @@ import static bn.BNConstants.MOD_NAME;
 import static bn.BNConstants.SERVER_PROXY_CLASS;
 import static bn.BNConstants.VERSION;
 
+import bn.item.DimMirror;
 import bn.proxy.CommonProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = MOD_ID, name = MOD_NAME, version = VERSION, acceptedMinecraftVersions = MC_VERSIONS)
 public class BrazilianNight
@@ -27,5 +29,11 @@ public class BrazilianNight
     {
       proxy.serverRegister();
       proxy.clientRegister();
+    }
+
+  @EventHandler
+  public void preInit (FMLPreInitializationEvent ev)
+    {
+      DimMirror.init();
     }
 }

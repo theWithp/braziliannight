@@ -15,7 +15,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 public class BNInitWorldGen
 {
-  public static final String PORT_NAME = "Land of Doors: Portallis";
+  public static final String PORT_NAME = "Portallis";
   public static final int PORT_ID = findFreeDimID();
   public static final DimensionType PORT_DIM_TYPE = DimensionType.register(PORT_NAME, "_" + PORT_NAME, PORT_ID,
       BNWorldProvider.class, false);
