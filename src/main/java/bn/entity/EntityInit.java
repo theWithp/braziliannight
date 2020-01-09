@@ -22,7 +22,7 @@ public class EntityInit
   private static int stamp = 0;
 
   private static final EntityEntry[] ENTITY_ENTRIES = { createEntry("WhiteWitch", WhiteWitch.class, 0xFF00FF, 0x0),
-      createEntry("BNWhirlwind", Whirlwind.class) };
+      createEntry("BNWhirlwind", Whirlwind.class), createEntry("Avocado", Avocado.class, 0xFF00FF, 0xFFFFFF) };
 
   private static <T extends Entity> EntityEntry createEntry (String name, Class<T> cls, boolean canMove,
       boolean makeEgg, int colorA, int colorB)
