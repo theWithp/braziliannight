@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber(modid = bn.BNConstants.MOD_ID)
 public class DimMirror extends BNItem
 {
-  private static final int PORT_ID = bn.dimension.BNInitWorldGen.PORT_ID;
+  private static final int PORT_ID = bn.dimension.BNInitWorldGen.DIM_ID;
   private static final String NAME = "dimmirror";
   private static DimMirror DIM_MIRROR;
 

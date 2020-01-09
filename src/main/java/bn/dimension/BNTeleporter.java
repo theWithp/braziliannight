@@ -45,7 +45,7 @@ public class BNTeleporter implements ITeleporter
                 putEntityAtSpawn(entity, world);
             } else
             putEntityAtSpawn(entity, world);
-        } else if (dim == BNInitWorldGen.PORT_ID)
+        } else if (dim == BNInitWorldGen.DIM_ID)
         putEntityAtBlockPos(entity, new BlockPos(0, BNInitWorldGen.DEFAULT_FLOOR_POS + 1, 0));
       else
         System.err.println("BrazilianNight, Error: used BNTeleporter to go to non BNDimension!");

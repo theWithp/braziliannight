@@ -1,5 +1,18 @@
 package bn.api.lychanitesmobs;
 
+import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
+
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+import javax.vecmath.Vector2f;
+import javax.vecmath.Vector4f;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -11,14 +24,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.Vec3d;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
-
-import javax.vecmath.Vector2f;
-import javax.vecmath.Vector4f;
-import java.io.InputStream;
-import java.nio.ByteBuffer;
-import java.util.*;
-
-import static org.lwjgl.opengl.GL11.GL_TRIANGLES;
 
 /**
  * @author jglrxavpok
@@ -96,17 +101,6 @@ public class TessellatorModel extends ObjModel
       int[] indices = obj.mesh.indices;
       Vertex[] vertices = obj.mesh.vertices;
 
-      // Colors From OBJ:
-      // Vector4f color = new Vector4f(1, 1, 1, 1);
-      /*
-       * if(obj.material != null) { GL11.glBindTexture(GL11.GL_TEXTURE_2D,
-       * obj.material.diffuseTexture); color = new Vector3f(
-       * obj.material.diffuseColor.x * obj.material.ambientColor.x,
-       * obj.material.diffuseColor.y * obj.material.ambientColor.y,
-       * obj.material.diffuseColor.z * obj.material.ambientColor.z); alpha =
-       * obj.material.transparency; }
-       */
-
       // Get/Create Normals:
       if (obj.mesh.normals == null)
         {
@@ -140,7 +134,6 @@ public class TessellatorModel extends ObjModel
         }
 
       // Draw Buffer:
-      // tess.draw();
       bufferBuilder.finishDrawing();
       if (bufferBuilder.getVertexCount() > 0)
         {
