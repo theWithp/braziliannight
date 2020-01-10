@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import bn.blocks.BNBlocks;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -21,9 +21,9 @@ public class BNChunkGenerator implements IChunkGenerator
 {
   private ChunkPrimer primer = new ChunkPrimer();
   private World world;
-  private static final int BASE_HEIGHT = BNInitWorldGen.DEFAULT_FLOOR_POS;
+  private static final int BASE_HEIGHT = 30;
   // TODO: confirm that diamond is unbreakable
-  private static final IBlockState FLOOR_BLOCK = BNBlocks.UNBREAKABLE_BLACK_CONCRETE;
+  private static final IBlockState FLOOR_BLOCK = Blocks.BLACK_GLAZED_TERRACOTTA.setBlockUnbreakable().getDefaultState();
   // TODO: confirm this wont spawn lycanites or whatever
   private static final List<Biome.SpawnListEntry> SPAWN_LIST = new ArrayList<>();
 

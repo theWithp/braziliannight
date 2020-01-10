@@ -2,10 +2,7 @@ package bn.dimension;
 
 import javax.annotation.Nullable;
 
-import com.google.gson.JsonObject;
-
 import bn.BNConstants;
-import bn.magic.ConstantLoader;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
@@ -21,25 +18,18 @@ import net.minecraftforge.registries.IForgeRegistry;
 
 public class BNInitWorldGen
 {
-  private BNInitWorldGen()
-    {}
-
-  public static final JsonObject DIMENSIONAL_CONSTANTS = ConstantLoader
-      .loadJsonResource(ConstantLoader.dataLoc("dimension.json"));
-  public static final String DIM_NAME = DIMENSIONAL_CONSTANTS.get("DIM_NAME").getAsString();
-  public static final int DEFAULT_FLOOR_POS = DIMENSIONAL_CONSTANTS.get("DEFAULT_FLOOR_POS").getAsInt();
-
-  public static final int DIM_ID = findFreeDimID();
-  public static final DimensionType DIM_TYPE = DimensionType.register(DIM_NAME, "_" + DIM_NAME, DIM_ID,
+  public static final String PORT_NAME = "Portallis";
+  public static final int PORT_ID = findFreeDimID();
+  public static final DimensionType PORT_DIM_TYPE = DimensionType.register(PORT_NAME, "_" + PORT_NAME, PORT_ID,
       BNWorldProvider.class, false);
-  public static final WorldType WORLD_TYPE = new BNWorldType();
+  public static final WorldType PORT_WORLD_TYPE = new BNWorldType();
   public static final Biome PORT_BIOME = new BNBiomePortallis();
 
   public static void onInit ()
     {
       BiomeManager.addBiome(BiomeType.DESERT, new BiomeEntry(PORT_BIOME, 0));
       BiomeDictionary.addTypes(PORT_BIOME, BiomeDictionary.Type.MAGICAL, BiomeDictionary.Type.SPOOKY);
-      DimensionManager.registerDimension(DIM_ID, DIM_TYPE);
+      DimensionManager.registerDimension(PORT_ID, PORT_DIM_TYPE);
     }
 
   @Nullable
@@ -61,7 +51,7 @@ public class BNInitWorldGen
     public static void onEvent (RegistryEvent.Register<Biome> event)
       {
         final IForgeRegistry<Biome> registry = event.getRegistry();
-        registry.register(PORT_BIOME.setRegistryName(BNConstants.MOD_ID, DIM_NAME));
+        registry.register(PORT_BIOME.setRegistryName(BNConstants.MOD_ID, PORT_NAME));
       }
   }
 }

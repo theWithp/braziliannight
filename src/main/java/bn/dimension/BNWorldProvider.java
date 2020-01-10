@@ -12,7 +12,7 @@ public class BNWorldProvider extends WorldProvider
   @Override
   public DimensionType getDimensionType ()
     {
-      return BNInitWorldGen.DIM_TYPE;
+      return BNInitWorldGen.PORT_DIM_TYPE;
     }
 
   @Override

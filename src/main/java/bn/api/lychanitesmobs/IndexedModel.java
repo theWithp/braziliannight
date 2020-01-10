@@ -1,9 +1,8 @@
 package bn.api.lychanitesmobs;
 
-import java.util.ArrayList;
-
 import javax.vecmath.Vector2f;
 import javax.vecmath.Vector3f;
+import java.util.ArrayList;
 
 public class IndexedModel
 {
@@ -97,6 +96,11 @@ public class IndexedModel
           v.add(normal);
           normals.set(z, v);
 
+          /*
+           * / Per Face Normal: Vector3f faceNormal = this.getFaceNormal(vertices.get(x),
+           * vertices.get(y), vertices.get(z)); faceNormals.set(x, faceNormal);
+           * faceNormals.set(y, faceNormal); faceNormals.set(z, faceNormal);
+           */
         }
 
       for (int i = 0; i < normals.size(); i++)

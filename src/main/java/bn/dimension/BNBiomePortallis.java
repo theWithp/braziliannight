@@ -10,7 +10,7 @@ public class BNBiomePortallis extends Biome
 {
   private static BiomeProperties getProps ()
     {
-      BiomeProperties props = new BiomeProperties(BNInitWorldGen.DIM_NAME);
+      BiomeProperties props = new BiomeProperties(BNInitWorldGen.PORT_NAME);
       props.setBaseHeight(1);
       props.setHeightVariation(0f);
       props.setTemperature(0f);

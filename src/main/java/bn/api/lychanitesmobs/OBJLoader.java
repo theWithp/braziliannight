@@ -69,6 +69,7 @@ public class OBJLoader
           String lines[] = res.split("\n|\r");
 
           int posOffset = 0;
+          int indicesOffset = 0;
           int texOffset = 0;
           int normOffset = 0;
           ArrayList<Vector3f> positions = new ArrayList<Vector3f>();
@@ -118,7 +119,17 @@ public class OBJLoader
                     {
                       texCoords.add(new Vector2f(Float.parseFloat(parts[1]), Float.parseFloat(parts[2])));
                     } else if (parts[0].equals(NEW_MATERIAL))
-                    {} else if (parts[0].equals(USE_MATERIAL))
+                    {
+                      // No need to load textures here.
+                      /*
+                       * String path = startPath+parts[1]; MtlMaterialLib material = new
+                       * MtlMaterialLib(path); ResourceLocation resourceLocation = new
+                       * ResourceLocation(path); InputStream inputStream =
+                       * Minecraft.getMinecraft().getResourceManager().getResource(resourceLocation).
+                       * getInputStream(); material.parse(read(inputStream));
+                       * materials.addAll(material.getMaterials());
+                       */
+                    } else if (parts[0].equals(USE_MATERIAL))
                     {
                       currentObject.material = getMaterial(materials, parts[1]);
                     } else if (parts[0].equals(NEW_OBJECT) || parts[0].equals(NEW_GROUP))

@@ -8,7 +8,7 @@ public class ModelAvocado extends ModelCreatureObj
 {
   public ModelAvocado()
     {
-      this.initModel("obj/avocado");
+      this.initModel("obj/creature/avocado");
     }
 
   @Override

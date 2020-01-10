@@ -9,7 +9,7 @@ public class BNWorldType extends WorldType
 {
   public BNWorldType()
     {
-      super(BNInitWorldGen.DIM_NAME);
+      super(BNInitWorldGen.PORT_NAME);
     }
 
   @Override
