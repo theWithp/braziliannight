@@ -8,6 +8,12 @@ import net.minecraft.world.gen.IChunkGenerator;
 
 public class BNWorldProvider extends WorldProvider
 {
+  @Override
+  protected void init ()
+    {
+      hasSkyLight = false;
+      biomeProvider = BNInitWorldGen.PORT_BIOME_PROVIDER;
+    }
 
   @Override
   public DimensionType getDimensionType ()

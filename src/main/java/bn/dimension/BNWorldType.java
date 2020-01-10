@@ -15,7 +15,7 @@ public class BNWorldType extends WorldType
   @Override
   public BiomeProvider getBiomeProvider (World w)
     {
-      return new BNBiomeProvider();
+      return BNInitWorldGen.PORT_BIOME_PROVIDER;
     }
 
   @Override

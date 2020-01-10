@@ -1,5 +1,6 @@
 {
    "DIM_NAME" = "portallis",
    "DEFAULT_FLOOR_POS" = 32,
-   "HUB_RADIUS" = 3
+   "HUB_RADIUS" = 2,
+   "MAX_HEIGHT" = 127
 }

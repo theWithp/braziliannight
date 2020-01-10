@@ -9,6 +9,7 @@ import bn.magic.ConstantLoader;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeProvider;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeManager.BiomeEntry;
@@ -34,6 +35,7 @@ public class BNInitWorldGen
       BNWorldProvider.class, false);
   public static final WorldType WORLD_TYPE = new BNWorldType();
   public static final Biome PORT_BIOME = new BNBiomePortallis();
+  public static final BiomeProvider PORT_BIOME_PROVIDER = new BNBiomeProvider();
 
   public static void onInit ()
     {

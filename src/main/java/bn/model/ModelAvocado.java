@@ -1,6 +1,5 @@
 package bn.model;
 
-import bn.BNConstants;
 import bn.api.lychanitesmobs.ModelCreatureObj;
 import net.minecraft.entity.EntityLiving;
 

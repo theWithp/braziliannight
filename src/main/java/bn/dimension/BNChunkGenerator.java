@@ -15,8 +15,6 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 
 //TODO: add doors (but that'll require a new block)
-//TODO: possibly weirder floor?
-//TODO: contemplate extra vertical layers
 public class BNChunkGenerator implements IChunkGenerator
 {
   private ChunkPrimer primer = new ChunkPrimer();
@@ -26,10 +24,25 @@ public class BNChunkGenerator implements IChunkGenerator
   private static final IBlockState FLOOR_BLOCK = BNBlocks.UNBREAKABLE_BLACK_CONCRETE;
   // TODO: confirm this wont spawn lycanites or whatever
   private static final List<Biome.SpawnListEntry> SPAWN_LIST = new ArrayList<>();
+  private static final int RADIUS = BNInitWorldGen.DIMENSIONAL_CONSTANTS.get("HUB_RADIUS").getAsInt();
+  private static final int MAX_HEIGHT = BNInitWorldGen.DIMENSIONAL_CONSTANTS.get("MAX_HEIGHT").getAsInt();
 
   public BNChunkGenerator(World w)
     {
       world = w;
+    }
+
+  public static PortallisChunkType getType (int x, int z)
+    {
+      if (Math.abs(x / 4) < RADIUS && Math.abs(z / 4) < RADIUS)
+        return PortallisChunkType.HUB;
+      return PortallisChunkType.FILLER;
+    }
+
+  private void fill (ChunkPrimer p, int x, int z)
+    {
+      for (int y = BASE_HEIGHT + 1; y <= MAX_HEIGHT; y++)
+        primer.setBlockState(x, y, z, FLOOR_BLOCK);
     }
 
   @Override
@@ -40,6 +53,15 @@ public class BNChunkGenerator implements IChunkGenerator
           for (int j = 0; j < 16; j++)
             {
               primer.setBlockState(i, BASE_HEIGHT, j, FLOOR_BLOCK);
+              primer.setBlockState(i, MAX_HEIGHT, j, FLOOR_BLOCK);
+              switch (getType(x, z))
+                {
+                case HUB:
+                  break;
+                case FILLER:
+                  fill(primer, i, j);
+                  break;
+                }
             }
         }
       Chunk ret = new Chunk(world, primer, x, z);

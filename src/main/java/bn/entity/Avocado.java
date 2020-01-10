@@ -9,8 +9,6 @@ public class Avocado extends BNEntity
 {
 
   private static final BNConstant AVOCADO = BNConstants.AVOCADO;
-
-  private static final String NAME = AVOCADO.getString("NAME");
   private static final float WIDTH = AVOCADO.getFloat("WIDTH");
   private static final float HEIGHT = AVOCADO.getFloat("HEIGHT");
 
