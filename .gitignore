@@ -14,5 +14,3 @@ build
 *.lock
 .metadata
 out
-#until we have real textures or discuss license
-*.png
