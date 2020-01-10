@@ -1,7 +1,6 @@
 package bn.proxy;
 
 import bn.item.DimMirror;
-import bn.render.RenderAvocado;
 import bn.render.boss.RenderWhiteWitch;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityLivingBase;
@@ -27,7 +26,6 @@ public class ClientProxy extends CommonProxy
   public void registerModels (ModelRegistryEvent ev)
     {
       RenderWhiteWitch.register();
-      RenderAvocado.register();
       DimMirror.registerRender();
     }
 

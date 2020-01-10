@@ -11,7 +11,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class RenderAvocado extends RenderLiving<EntityLiving>
 {
-  private static final ResourceLocation loc = new ResourceLocation(BNConstants.MOD_ID, "textures/avocado.png");
+  private static final ResourceLocation loc = new ResourceLocation(BNConstants.MOD_ID, "assets/textures/avocado.png");
 
   public RenderAvocado(RenderManager m, float shadowSize)
     {

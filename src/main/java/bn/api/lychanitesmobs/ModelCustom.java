@@ -1,18 +1,19 @@
 package bn.api.lychanitesmobs;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.vecmath.Vector2f;
+
+import org.lwjgl.opengl.GL11;
+
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.lwjgl.opengl.GL11;
-
-import javax.vecmath.Vector2f;
-import javax.vecmath.Vector4f;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Map.Entry;
 
 @SideOnly(Side.CLIENT)
 public class ModelCustom extends ModelBase

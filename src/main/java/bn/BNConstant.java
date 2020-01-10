@@ -1,11 +1,13 @@
 package bn;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import bn.magic.ConstantLoader;
 
 public class BNConstant
 {
@@ -16,33 +18,22 @@ public class BNConstant
 
   public BNConstant(String filename)
     {
-      URL loc = Thread.currentThread().getContextClassLoader().getResource(filename);
-      try
+      JsonObject raw = ConstantLoader.loadJsonResource(filename);
+      for (Entry<String, JsonElement> elm : raw.entrySet())
         {
-          BufferedReader in = new BufferedReader(new InputStreamReader(loc.openStream()));
-          String line;
-          while ((line = in.readLine()) != null)
+          String pos = elm.getKey();
+          JsonElement subject = elm.getValue();
+          try
             {
-              line = line.trim();
-              if (line.startsWith("#") || !line.contains("="))
-                continue;
-              String[] parts = line.split("=", 2);
-              parts[0] = parts[0].trim();
-              parts[1] = parts[1].trim();
-              if (parts[1].matches("\\A-?\\d+\\z"))
-                {
-                  INTEGERS.put(parts[0], Integer.parseInt(parts[1]));
-                } else if (parts[1].matches("\\A-?\\d+\\.?\\d+D?\\z"))
-                {
-                  DOUBLES.put(parts[0], Double.parseDouble(parts[1]));
-                } else
-                {
-                  STRINGS.put(parts[0], parts[1]);
-                }
+              if (subject.getAsString().contains("."))
+                DOUBLES.put(pos, subject.getAsDouble());
+              else
+                INTEGERS.put(pos, subject.getAsInt());
+            } catch (Exception e)
+            {
+              STRINGS.put(pos, subject.getAsString());
+              System.out.println(subject.getAsString() + " is a string");
             }
-        } catch (IOException e)
-        {
-          System.err.println(BNConstants.MOD_NAME + ": error could not load " + loc.toString());
         }
     }
 

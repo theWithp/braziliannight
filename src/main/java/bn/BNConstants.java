@@ -30,7 +30,7 @@ public class BNConstants
   public static final int BOSS_RESIST_TIME = 40;
 
   public static final String prefix = "data/" + MOD_ID + "/";
-  public static final BNConstant WHITE_WITCH = new BNConstant(prefix + "whiteWitch.cfg");
-  public static final BNConstant AVOCADO = new BNConstant(prefix + "avocado.cfg");
+  public static final BNConstant WHITE_WITCH = new BNConstant(prefix + "whiteWitch.json");
+  public static final BNConstant AVOCADO = new BNConstant(prefix + "avocado.json");
 
 }

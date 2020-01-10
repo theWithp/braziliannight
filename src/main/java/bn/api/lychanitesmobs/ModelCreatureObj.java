@@ -19,7 +19,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import bn.BNConstants;
-import bn.entity.BNEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -126,14 +125,16 @@ public class ModelCreatureObj extends ModelCustom implements IAnimationModel
     {
 
       // Load Obj Model:
-      this.wavefrontObject = new TessellatorModel(new ResourceLocation(BNConstants.MOD_ID, "models/" + path + ".obj"));
+      this.wavefrontObject = new TessellatorModel(
+          new ResourceLocation(BNConstants.MOD_ID, "assets/brazilliannight/models/" + path + ".obj"));
       this.wavefrontParts = this.wavefrontObject.objObjects;
 
       // Create Animator:
       this.animator = new Animator();
 
       // Load Model Parts:
-      ResourceLocation modelPartsLocation = new ResourceLocation(BNConstants.MOD_ID, "models/" + path + "_parts.json");
+      ResourceLocation modelPartsLocation = new ResourceLocation(BNConstants.MOD_ID,
+          "assets/brazilliannight/models/obj/" + path + "_parts.json");
       try
         {
           Gson gson = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
@@ -427,37 +428,7 @@ public class ModelCreatureObj extends ModelCustom implements IAnimationModel
   // Attack Frame
   // ==================================================
   public void updateAttackProgress (Entity entity)
-    {
-      // TODO: figure out default attack AI
-
-//      if (this.currentModelState == null || !(entity instanceof BNEntity))
-//        return;
-//      BNEntity entityCreature = (BNEntity) entity;
-//
-//      if (this.currentModelState.attackAnimationPlaying)
-//        {
-//          if (this.currentModelState.attackAnimationIncreasing)
-//            {
-//              this.currentModelState.attackAnimationProgress = Math.min(
-//                  this.currentModelState.attackAnimationProgress + this.currentModelState.attackAnimationSpeed, 1F);
-//              if (this.currentModelState.attackAnimationProgress >= 1)
-//                this.currentModelState.attackAnimationIncreasing = false;
-//            } else
-//            {
-//              this.currentModelState.attackAnimationProgress = Math.max(
-//                  this.currentModelState.attackAnimationProgress - this.currentModelState.attackAnimationSpeed, 0F);
-//              if (this.currentModelState.attackAnimationProgress <= 0)
-//                {
-//                  this.currentModelState.attackAnimationPlaying = false;
-//                }
-//            }
-//        } else if (entityCreature.isSwingInProgress)
-//        {
-//          this.currentModelState.attackAnimationPlaying = true;
-//          this.currentModelState.attackAnimationIncreasing = true;
-//          this.currentModelState.attackAnimationProgress = 0;
-//        }
-    }
+    {}
 
   public float getAttackProgress ()
     {
