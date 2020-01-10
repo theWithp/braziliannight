@@ -125,16 +125,14 @@ public class ModelCreatureObj extends ModelCustom implements IAnimationModel
     {
 
       // Load Obj Model:
-      this.wavefrontObject = new TessellatorModel(
-          new ResourceLocation(BNConstants.MOD_ID, "assets/brazilliannight/models/" + path + ".obj"));
+      this.wavefrontObject = new TessellatorModel(new ResourceLocation(BNConstants.MOD_ID, "models/" + path + ".obj"));
       this.wavefrontParts = this.wavefrontObject.objObjects;
 
       // Create Animator:
       this.animator = new Animator();
 
       // Load Model Parts:
-      ResourceLocation modelPartsLocation = new ResourceLocation(BNConstants.MOD_ID,
-          "assets/brazilliannight/models/obj/" + path + "_parts.json");
+      ResourceLocation modelPartsLocation = new ResourceLocation(BNConstants.MOD_ID, "models/" + path + "_parts.json");
       try
         {
           Gson gson = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
