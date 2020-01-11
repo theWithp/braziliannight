@@ -1,0 +1,55 @@
+{
+    "name": "Portallis",
+    "chunkDefinitions":
+    [{"x": -1,
+      "z": -1,
+      "layers": ["hubFloor"]},
+     {"x": -1,
+      "z": 0,
+      "layers": ["hubFloor"]},
+     {"x": -1,
+      "z": 1,
+      "layers": ["hubFloor"]},
+     {"x": 0,
+      "z": -1,
+      "layers": ["hubFloor"]},
+     {"x": 0,
+      "z": 0,
+      "layers": ["hubFloor"]},
+     {"x": 0,
+      "z": 1,
+      "layers": ["hubFloor"]},
+     {"x": 1,
+      "z": -1,
+      "layers": ["hubFloor"]},
+     {"x": 1,
+      "z": 0,
+      "layers": ["hubFloor"]},
+     {"x": 1,
+      "z": 1,
+      "layers": ["hubFloor"]}],
+    
+    "layerDefinitions":
+    [{"id": "filler",
+      "baseYPos": 1,
+      "map":[
+	  "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"]},
+     {"id": "hubFloor",
+      "baseYPos": 32,
+      "map":[
+	  ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", ".", "."]}],
+    
+    "rowDefinitions":
+    [{"id": "X",
+      "chars": "XXXXXXXXXXXXXXXX"},
+     {"id": ".",
+      "chars": "................"}],
+    
+    "defaultLayer": "filler",
+    "legend": 
+    [{"char": "X",
+      "actions": [{
+	  "blockId": "BLACK_CONCRETE",
+	  "heightFromBase": 126}]},
+     {"char": ".",
+      "actions": [{"blockId": "BLACK_CONCRETE"}]}]}

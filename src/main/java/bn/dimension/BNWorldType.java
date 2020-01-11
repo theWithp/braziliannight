@@ -1,5 +1,6 @@
 package bn.dimension;
 
+import bn.dimension.chunk.BNChunkGenerator;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.BiomeProvider;

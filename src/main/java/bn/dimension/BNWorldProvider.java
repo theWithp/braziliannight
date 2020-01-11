@@ -1,5 +1,6 @@
 package bn.dimension;
 
+import bn.dimension.chunk.BNChunkGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.WorldProvider;

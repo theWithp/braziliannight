@@ -1,0 +1,61 @@
+{
+    "$id": "braziliannight/schemas/chunkMapSchema.jason",
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Chunk Map",
+    "description": "A Map of a fixed dimension in ascii",
+    "type": "object",
+    "properties": {
+	"name": {
+	    "type": "string",
+	    "description": "dimension name"},
+	"chunkDefinitions": {
+	    "type": "array",
+	    "items": {
+		"type": "object",
+		"description": "formula for constructing a chunk at given position by reference",
+		"properties": {
+		    "x": {"type": "integer"},
+		    "z": {"type": "integer"},		    
+		    "layers": {
+			"type": "array",
+			"items": {"type": "string"}}}}},
+	"layerDefinitions": {
+	    "type": "array",
+	    "items": {
+		"type": "object",
+		"description": "16 references to a row definition, in order"
+		"properties": {
+		    "id": {"type": "string"},
+		    "baseYPos": {"type": "integer"},
+		    "map": {
+			"type": "array",
+			"minItems": 16,
+			"maxItems": 16,
+			"items": {"type": "string"}}}}},
+	"rowDefinitions": {
+	    "type": "array",
+	    "items": {
+		"type": "object",
+		"description": "map of strings to 16 character map rows",
+		"properties": {
+		    "id": {"type": "string"},
+		    "chars":{
+			"type": "string",
+			"minLength": 16,
+			"maxLength": 16}}}},
+	"defaultLayer": {"type": "string"},
+	"legend": {
+	    "type": "array",
+	    "items": {
+		"type": "object",
+		"properties": {
+		    "char": {"type": "string"},
+		    "actions": {
+			"type": "array",
+			"items": {
+			    "type": "object",
+			    "properties": {
+				"blockId": {"type": "sting"},
+				"blockSpecial": {"type": "string"},
+				"heightFromBase": {"type": "integer"},
+				"yOffset": {"type": "integer"}}}}}}}}}
