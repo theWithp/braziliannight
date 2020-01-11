@@ -79,9 +79,13 @@
     
     "layerDefinitions":
     [{"id": "filler",
-      "baseYPos": 1,
+      "baseYPos": 32,
       "map":[
 	  "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"]},
+     {"id": "bedrock",
+      "baseYPos": 127,
+      "map":[
+	  "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B", "B"]},
      {"id": "hubFloor",
       "baseYPos": 32,
       "map":[
@@ -133,13 +137,26 @@
      {"id": "leftEdge",
       "chars": "XXXXXXXXXXXXXXX."},
      {"id": "rightEdge",
-      "chars": ".XXXXXXXXXXXXXXX"}],
+      "chars": ".XXXXXXXXXXXXXXX"},
+     {"id": "B",
+      "chars": "BBBBBBBBBBBBBBBB"}],
     
     "defaultLayer": "filler",
     "legend": 
     [{"char": "X",
-      "actions": [{
-	  "blockId": "BLACK_CONCRETE",
-	  "heightFromBase": 126}]},
+      "actions": [
+	  {
+	      "blockId": "BLACK_CONCRETE",
+	      "heightFromBase": 94},
+	  {
+	      "blockId": "BEDROCK",
+	      "yOffset": 95}]},
+     {"char": "B",
+      "actions": [{"blockId": "BEDROCK"}]},
      {"char": ".",
-      "actions": [{"blockId": "BLACK_CONCRETE"}]}]}
+      "actions": [
+	  {"blockId": "BLACK_CONCRETE"},
+      	  {"blockId": "BLACK_CONCRETE",
+	   "yOffset": 94},
+	  {"blockId": "BEDROCK",
+	   "yOffset": 95}]}]}

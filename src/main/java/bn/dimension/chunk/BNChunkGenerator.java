@@ -15,10 +15,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import bn.blocks.BNBlocks;
 import bn.dimension.BNInitWorldGen;
 import bn.magic.ConstantLoader;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
@@ -35,8 +33,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public class BNChunkGenerator implements IChunkGenerator
 {
   private World world;
-  // TODO: confirm that diamond is unbreakable
-  private static final IBlockState FLOOR_BLOCK = BNBlocks.UNBREAKABLE_BLACK_CONCRETE;
   // TODO: confirm this wont spawn lycanites or whatever
   private static final List<Biome.SpawnListEntry> SPAWN_LIST = new ArrayList<>();
 
@@ -86,22 +82,6 @@ public class BNChunkGenerator implements IChunkGenerator
       MinecraftForge.EVENT_BUS.register(this);
     }
 
-  private void placeFromLegend (int x, int y, int z, ChunkPrimer primer, char sigil)
-    {
-      // TODO hardcoded for now (we ignore legend)
-      if (sigil == '.')
-        {
-          primer.setBlockState(x, y, z, FLOOR_BLOCK);
-          primer.setBlockState(x, 127, z, FLOOR_BLOCK);
-        } else if (sigil == 'X')
-        {
-          for (int i = y; i < 128; i++)
-            {
-              primer.setBlockState(x, i, z, FLOOR_BLOCK);
-            }
-        }
-    }
-
   @Override
   public Chunk generateChunk (int x, int z)
     {
@@ -121,7 +101,7 @@ public class BNChunkGenerator implements IChunkGenerator
               for (int j = 0; j < 16; j++)
                 {
                   char sigil = row.charAt(j);
-                  placeFromLegend(i, layer.getY(), j, primer, sigil);
+                  legend.place(i, layer.getY(), j, primer, sigil);
                 }
             }
         }
@@ -135,8 +115,6 @@ public class BNChunkGenerator implements IChunkGenerator
   @SubscribeEvent
   public void onChunkchange (EntityEvent.EnteringChunk ev)
     {
-      if (world.isRemote)
-        return;
       Entity ent = ev.getEntity();
       if (ent.dimension != BNInitWorldGen.DIM_ID)
         return;
