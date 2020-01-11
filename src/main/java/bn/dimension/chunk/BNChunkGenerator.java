@@ -19,6 +19,7 @@ import bn.blocks.BNBlocks;
 import bn.dimension.BNInitWorldGen;
 import bn.magic.ConstantLoader;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,6 +27,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 //TODO: add doors (but that'll require a new block)
 public class BNChunkGenerator implements IChunkGenerator
@@ -79,6 +83,7 @@ public class BNChunkGenerator implements IChunkGenerator
 
       legend = new ChunkLegend(rawMap.get("legend").getAsJsonArray());
 
+      MinecraftForge.EVENT_BUS.register(this);
     }
 
   private void placeFromLegend (int x, int y, int z, ChunkPrimer primer, char sigil)
@@ -125,6 +130,33 @@ public class BNChunkGenerator implements IChunkGenerator
       Arrays.fill(ret.getBiomeArray(), (byte) Biome.getIdForBiome(BNInitWorldGen.PORT_BIOME));
       ret.generateSkylightMap();
       return ret;
+    }
+
+  @SubscribeEvent
+  public void onChunkchange (EntityEvent.EnteringChunk ev)
+    {
+      if (world.isRemote)
+        return;
+      Entity ent = ev.getEntity();
+      if (ent.dimension != BNInitWorldGen.DIM_ID)
+        return;
+
+      Pair<Integer, Integer> curPos = new ImmutablePair<>(ev.getNewChunkX(), ev.getNewChunkZ());
+      double y = ent.posY;
+      if (!worldMap.containsKey(curPos))
+        ent.setPosition(0, y, 0);
+      else
+        {
+          Set<String> chunkData = worldMap.get(curPos);
+          for (String feature : chunkData)
+            {
+              System.out.println(feature);
+              if (feature.contains("North") || feature.contains("South") || feature.contains("West")
+                  || feature.contains("East"))
+                ent.setPositionAndUpdate(-(ent.posX - 2 * Math.signum(ent.posX)), y,
+                    -(ent.posZ - 2 * Math.signum(ent.posZ)));
+            }
+        }
     }
 
   @Override
