@@ -75,7 +75,7 @@ public class BNTeleport
             {
               if (DimensionType.byName(BrazilianNight.DIM_LOC) == null)
                 {
-                  DimensionManager.registerDimension(BrazilianNight.DIM_LOC, BrazilianNight.DIMENSION, null, true);
+                  DimensionManager.registerDimension(BrazilianNight.DIM_LOC, BrazilianNight.modInstance.DIMENSION, null, true);
                 }
               changeDim(p, new BlockPos(0, 33, 0), DimensionType.byName(BrazilianNight.DIM_LOC));
             }

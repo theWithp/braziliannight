@@ -17,7 +17,7 @@ public class DimMirror extends BNItem
 
   public DimMirror()
     {
-      super(new Properties().maxStackSize(1).group(BrazilianNight.GROUP));
+      super(new Properties().maxStackSize(1).group(BrazilianNight.modInstance.GROUP));
     }
 
   @Override

@@ -132,7 +132,7 @@ public class BNChunkGenerator extends ChunkGenerator<GenerationSettings>
   @Override
   public List<Biome.SpawnListEntry> getPossibleCreatures (EntityClassification creatureType, BlockPos pos)
     {
-      return BrazilianNight.PORT_BIOME.getSpawns(creatureType);
+      return BrazilianNight.modInstance.PORT_BIOME.getSpawns(creatureType);
     }
 
   @Nullable

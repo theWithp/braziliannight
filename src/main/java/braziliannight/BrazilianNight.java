@@ -28,9 +28,11 @@ import net.minecraftforge.fml.common.Mod;
 public class BrazilianNight
 {
 
+  public static BrazilianNight modInstance;
   public static final String MODID = "braziliannight";
   public static final ResourceLocation DIM_LOC = new ResourceLocation(MODID, "portallis");
-  public static final ModDimension DIMENSION = new ModDimension()
+  
+  public final ModDimension DIMENSION = new ModDimension()
     {
       @Override
       public BiFunction<World, DimensionType, ? extends Dimension> getFactory ()
@@ -39,14 +41,14 @@ public class BrazilianNight
         }
     }.setRegistryName(DIM_LOC);
 
-  public static final ChunkGeneratorType<GenerationSettings, BNChunkGenerator> CHUNK_GENERATOR_TYPE = new ChunkGeneratorType<>(
+  public final ChunkGeneratorType<GenerationSettings, BNChunkGenerator> CHUNK_GENERATOR_TYPE = new ChunkGeneratorType<>(
       BNChunkGenerator::new, false, GenerationSettings::new);
-  public static final BiomeProviderType<SingleBiomeProviderSettings, BNBiomeProvider> BIOME_PROVIDER_TYPE = new BiomeProviderType<>(
+  public final BiomeProviderType<SingleBiomeProviderSettings, BNBiomeProvider> BIOME_PROVIDER_TYPE = new BiomeProviderType<>(
       BNBiomeProvider::new, SingleBiomeProviderSettings::new);
-  public static final Biome PORT_BIOME = new BNBiome();
-  public static final Block DIM_DOOR = new DimDoor();
-  public static final Item DIM_MIRROR = new DimMirror();
-  public static final ItemGroup GROUP = new ItemGroup(MODID)
+  public final Biome PORT_BIOME = new BNBiome();
+  public final Block DIM_DOOR = new DimDoor();
+  public final Item DIM_MIRROR = new DimMirror();
+  public final ItemGroup GROUP = new ItemGroup(MODID)
     {
       @Override
       public ItemStack createIcon ()
@@ -56,5 +58,7 @@ public class BrazilianNight
     };
 
   public BrazilianNight()
-    {}
+    {
+	  modInstance = this;
+    }
 }

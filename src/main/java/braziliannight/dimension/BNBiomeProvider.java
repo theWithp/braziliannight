@@ -20,7 +20,7 @@ import net.minecraft.world.gen.feature.structure.Structure;
 
 public class BNBiomeProvider extends BiomeProvider
 {
-  private static final List<Biome> SPAWN = Collections.singletonList(BrazilianNight.PORT_BIOME);
+  private static final List<Biome> SPAWN = Collections.singletonList(BrazilianNight.modInstance.PORT_BIOME);
   private final Biome biome;
 
   public BNBiomeProvider(SingleBiomeProviderSettings settings)

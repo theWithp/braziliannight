@@ -27,41 +27,41 @@ public class BNEventHandler
   @SubscribeEvent
   public static void onDimensionModRegistry (RegistryEvent.Register<ModDimension> event)
     {
-      event.getRegistry().register(BrazilianNight.DIMENSION);
-      DimensionManager.registerDimension(BrazilianNight.DIM_LOC, BrazilianNight.DIMENSION, null, false);
+      event.getRegistry().register(BrazilianNight.modInstance.DIMENSION);
+      DimensionManager.registerDimension(BrazilianNight.DIM_LOC, BrazilianNight.modInstance.DIMENSION, null, false);
     }
 
   @SubscribeEvent
   public static void onChunkGeneratorTypeRegistry (RegistryEvent.Register<ChunkGeneratorType<?, ?>> event)
     {
-      event.getRegistry().register(BrazilianNight.CHUNK_GENERATOR_TYPE.setRegistryName(MODID, "generator"));
+      event.getRegistry().register(BrazilianNight.modInstance.CHUNK_GENERATOR_TYPE.setRegistryName(MODID, "generator"));
     }
 
   @SubscribeEvent
   public static void onBiomeProviderTypeRegistry (RegistryEvent.Register<BiomeProviderType<?, ?>> event)
     {
-      event.getRegistry().register(BrazilianNight.BIOME_PROVIDER_TYPE.setRegistryName(MODID, "generator"));
+      event.getRegistry().register(BrazilianNight.modInstance.BIOME_PROVIDER_TYPE.setRegistryName(MODID, "generator"));
     }
 
   @SubscribeEvent
   public static void onBlockRegistry (RegistryEvent.Register<Block> event)
     {
-      event.getRegistry().register(BrazilianNight.DIM_DOOR.setRegistryName(MODID, "dim_door"));
+      event.getRegistry().register(BrazilianNight.modInstance.DIM_DOOR.setRegistryName(MODID, "dim_door"));
     }
 
   @SubscribeEvent
   public static void onBiomeRegistry (RegistryEvent.Register<Biome> ev)
     {
-      ForgeRegistries.BIOMES.register(BrazilianNight.PORT_BIOME);
-      BiomeDictionary.addTypes(BrazilianNight.PORT_BIOME, BiomeDictionary.Type.VOID);
+      ForgeRegistries.BIOMES.register(BrazilianNight.modInstance.PORT_BIOME);
+      BiomeDictionary.addTypes(BrazilianNight.modInstance.PORT_BIOME, BiomeDictionary.Type.VOID);
     }
 
   @SubscribeEvent
   public static void onItemRegistry (RegistryEvent.Register<Item> ev)
     {
       ev.getRegistry()
-          .register(new BlockItem(BrazilianNight.DIM_DOOR, new Item.Properties().group(BrazilianNight.GROUP))
-              .setRegistryName(BrazilianNight.DIM_DOOR.getRegistryName()));
+          .register(new BlockItem(BrazilianNight.modInstance.DIM_DOOR, new Item.Properties().group(BrazilianNight.modInstance.GROUP))
+              .setRegistryName(BrazilianNight.modInstance.DIM_DOOR.getRegistryName()));
       ev.getRegistry().register(setup(new DimMirror(), "dim_mirror"));
     }
 

@@ -24,10 +24,10 @@ public class BNDimension extends Dimension
   @Override
   public ChunkGenerator<?> createChunkGenerator ()
     {
-      return BrazilianNight.CHUNK_GENERATOR_TYPE.create(this.world,
-          BrazilianNight.BIOME_PROVIDER_TYPE
-              .create(BrazilianNight.BIOME_PROVIDER_TYPE.createSettings().setBiome(BrazilianNight.PORT_BIOME)),
-          BrazilianNight.CHUNK_GENERATOR_TYPE.createSettings());
+      return BrazilianNight.modInstance.CHUNK_GENERATOR_TYPE.create(this.world,
+          BrazilianNight.modInstance.BIOME_PROVIDER_TYPE
+              .create(BrazilianNight.modInstance.BIOME_PROVIDER_TYPE.createSettings().setBiome(BrazilianNight.modInstance.PORT_BIOME)),
+          BrazilianNight.modInstance.CHUNK_GENERATOR_TYPE.createSettings());
     }
 
   @Nullable
