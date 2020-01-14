@@ -9,6 +9,7 @@ import braziliannight.dimension.BNChunkGenerator;
 import braziliannight.dimension.BNDimension;
 import braziliannight.item.DimMirror;
 import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -46,19 +47,21 @@ public class BrazilianNight
   public final BiomeProviderType<SingleBiomeProviderSettings, BNBiomeProvider> BIOME_PROVIDER_TYPE = new BiomeProviderType<>(
       BNBiomeProvider::new, SingleBiomeProviderSettings::new);
   public final Biome PORT_BIOME = new BNBiome();
-  public final Block DIM_DOOR = new DimDoor();
-  public final Item DIM_MIRROR = new DimMirror();
   public final ItemGroup GROUP = new ItemGroup(MODID)
     {
       @Override
       public ItemStack createIcon ()
         {
-          return new ItemStack(DIM_MIRROR);
-        }
+          return new ItemStack(Blocks.BLACK_CONCRETE);
+        }      
     };
-
+    public Item DIM_MIRROR = null;
+    public Block DIM_DOOR = null;
+    
   public BrazilianNight()
     {
 	  modInstance = this;
+	  DIM_MIRROR = new DimMirror();
+	  DIM_DOOR = new DimDoor();
     }
 }
