@@ -15,8 +15,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldInfo;
-import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ForgeHooks;
+import net.minecraftforge.fml.common.thread.EffectiveSide;
 import net.minecraftforge.fml.hooks.BasicEventHooks;
 
 public class BNTeleport
@@ -68,17 +68,12 @@ public class BNTeleport
 
   public static boolean hubOverworldWormhole (World w, ServerPlayerEntity p)
     {
-      if (!w.isRemote)
+      if (EffectiveSide.get().isServer())
         {
           // Go To Portallis
           if (w.getDimension().getType().equals(DimensionType.OVERWORLD))
-            {
-              if (DimensionType.byName(BrazilianNight.DIM_LOC) == null)
-                {
-                  DimensionManager.registerDimension(BrazilianNight.DIM_LOC, BrazilianNight.modInstance.DIMENSION, null, true);
-                }
-              changeDim(p, new BlockPos(0, 33, 0), DimensionType.byName(BrazilianNight.DIM_LOC));
-            }
+            changeDim(p, new BlockPos(0, 33, 0), DimensionType.byName(BrazilianNight.DIM_LOC));
+
           // Go to Spawn (bed happens later)
           else if (w.getDimension().getType().equals(DimensionType.byName(BrazilianNight.DIM_LOC)))
             {

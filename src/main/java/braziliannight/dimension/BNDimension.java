@@ -2,7 +2,7 @@ package braziliannight.dimension;
 
 import javax.annotation.Nullable;
 
-import braziliannight.BrazilianNight;
+import braziliannight.BNRegistration;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -24,10 +24,10 @@ public class BNDimension extends Dimension
   @Override
   public ChunkGenerator<?> createChunkGenerator ()
     {
-      return BrazilianNight.modInstance.CHUNK_GENERATOR_TYPE.create(this.world,
-          BrazilianNight.modInstance.BIOME_PROVIDER_TYPE
-              .create(BrazilianNight.modInstance.BIOME_PROVIDER_TYPE.createSettings().setBiome(BrazilianNight.modInstance.PORT_BIOME)),
-          BrazilianNight.modInstance.CHUNK_GENERATOR_TYPE.createSettings());
+      return BNRegistration.CHUNK_GENERATOR.create(this.world,
+          BNRegistration.BIOME_PROVIDER
+              .create(BNRegistration.BIOME_PROVIDER.createSettings().setBiome(BNRegistration.PORTALLIS_HUB)),
+          BNRegistration.CHUNK_GENERATOR.createSettings());
     }
 
   @Nullable

@@ -15,7 +15,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import braziliannight.BrazilianNight;
+import braziliannight.BNRegistration;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IWorld;
@@ -40,7 +40,8 @@ public class BNChunkGenerator extends ChunkGenerator<GenerationSettings>
   private static final Map<String, String> worldRows = new HashMap<>();
   private static final Set<String> defaultLayer = new HashSet<>();
   private static ChunkLegend legend;
-
+  // if we had multiple dimensions/maps we'd have to do this in the constructor
+  // and not at static time
     {
       final JsonObject rawMap = ConstantLoader.loadJsonResource(ConstantLoader.dataLoc("chunk/portallis_map.json"));
 
@@ -132,7 +133,7 @@ public class BNChunkGenerator extends ChunkGenerator<GenerationSettings>
   @Override
   public List<Biome.SpawnListEntry> getPossibleCreatures (EntityClassification creatureType, BlockPos pos)
     {
-      return BrazilianNight.modInstance.PORT_BIOME.getSpawns(creatureType);
+      return BNRegistration.PORTALLIS_HUB.getSpawns(creatureType);
     }
 
   @Nullable
@@ -150,15 +151,11 @@ public class BNChunkGenerator extends ChunkGenerator<GenerationSettings>
 
   @Override
   public void initStructureStarts (IChunk p_222533_1_, ChunkGenerator<?> p_222533_2_, TemplateManager p_222533_3_)
-    {
-
-    }
+    {}
 
   @Override
   public void makeBase (IWorld iWorld, IChunk iChunk)
-    {
-
-    }
+    {}
 
   @Nullable
   @Override

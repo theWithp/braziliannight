@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraftforge.fml.common.thread.EffectiveSide;
 
 public class DimDoor extends DoorBlock
 {
@@ -36,6 +37,7 @@ public class DimDoor extends DoorBlock
   public boolean onBlockActivated (BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand,
       BlockRayTraceResult rts)
     {
-      return worldIn.isRemote ? false : BNTeleport.hubOverworldWormhole(worldIn, (ServerPlayerEntity) playerIn);
+      return EffectiveSide.get().isClient() ? false
+          : BNTeleport.hubOverworldWormhole(worldIn, (ServerPlayerEntity) playerIn);
     }
 }
