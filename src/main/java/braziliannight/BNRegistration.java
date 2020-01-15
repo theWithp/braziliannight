@@ -11,11 +11,17 @@ import braziliannight.dimension.BNBiome;
 import braziliannight.dimension.BNBiomeProvider;
 import braziliannight.dimension.BNChunkGenerator;
 import braziliannight.dimension.BNDimension;
+import braziliannight.entity.BNNimbus;
+import braziliannight.item.BNINimbus;
 import braziliannight.item.DimMirror;
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityClassification;
+import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProviderType;
@@ -34,8 +40,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistryEntry;
 import net.minecraftforge.registries.ObjectHolder;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-@ObjectHolder(BrazilianNight.MODID)
+@Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ObjectHolder(MODID)
 public class BNRegistration
 {
   public static final ModDimension PORTALLIS = null;
@@ -44,6 +50,9 @@ public class BNRegistration
   public static final Block DIM_DOOR = null;
   public static final Biome PORTALLIS_HUB = null;
   public static final Item DIM_MIRROR = null;
+  public static final Item I_NIMBUS = null;
+  public static final EntityType<BNNimbus> NIMBUS = setupEntityType("nimbus",
+      EntityType.Builder.<BNNimbus>create(BNNimbus::new, EntityClassification.MISC).size(0.5f, 1));
 
   @SubscribeEvent
   public static void onDimensionModRegistry (RegistryEvent.Register<ModDimension> event)
@@ -94,6 +103,20 @@ public class BNRegistration
       ev.getRegistry().register(new BlockItem(DIM_DOOR, new Item.Properties().group(BrazilianNight.modInstance.GROUP))
           .setRegistryName(DIM_DOOR.getRegistryName()));
       ev.getRegistry().register(setup(new DimMirror(), "dim_mirror"));
+      ev.getRegistry().register(setup(new BNINimbus(), "i_nimbus"));
+    }
+
+  @SubscribeEvent
+  public static void registerEntities (final RegistryEvent.Register<EntityType<?>> ev)
+    {
+      /*
+       * TODO make a setup for this crap this is disgusting ev.getRegistry()
+       * .register(EntityType.Builder.<BNNimbus>create(BNNimbus::new,
+       * EntityClassification.MISC).size(0.5f, 1)
+       * .setUpdateInterval(3).setTrackingRange(32).setShouldReceiveVelocityUpdates(
+       * false).build("nimbus") .setRegistryName(MODID, "nimbus"));
+       */
+      ev.getRegistry().register(NIMBUS);
     }
 
   @Nonnull
@@ -108,5 +131,11 @@ public class BNRegistration
     {
       entry.setRegistryName(registryName);
       return entry;
+    }
+
+  @SuppressWarnings("deprecation")
+  private static <T extends Entity> EntityType<T> setupEntityType (String key, EntityType.Builder<T> builder)
+    {
+      return Registry.register(Registry.ENTITY_TYPE, MODID + ":" + key, builder.build(key));
     }
 }

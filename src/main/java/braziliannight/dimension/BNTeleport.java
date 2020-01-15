@@ -66,10 +66,11 @@ public class BNTeleport
       BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, type);
     }
 
-  public static boolean hubOverworldWormhole (World w, ServerPlayerEntity p)
+  public static boolean hubOverworldWormhole (ServerPlayerEntity p)
     {
       if (EffectiveSide.get().isServer())
         {
+          World w = p.world;
           // Go To Portallis
           if (w.getDimension().getType().equals(DimensionType.OVERWORLD))
             changeDim(p, new BlockPos(0, 33, 0), DimensionType.byName(BrazilianNight.DIM_LOC));

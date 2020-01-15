@@ -37,7 +37,6 @@ public class DimDoor extends DoorBlock
   public boolean onBlockActivated (BlockState state, World worldIn, BlockPos pos, PlayerEntity playerIn, Hand hand,
       BlockRayTraceResult rts)
     {
-      return EffectiveSide.get().isClient() ? false
-          : BNTeleport.hubOverworldWormhole(worldIn, (ServerPlayerEntity) playerIn);
+      return EffectiveSide.get().isClient() ? false : BNTeleport.hubOverworldWormhole((ServerPlayerEntity) playerIn);
     }
 }

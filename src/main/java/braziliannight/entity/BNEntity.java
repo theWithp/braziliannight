@@ -5,7 +5,7 @@ import net.minecraft.entity.MobEntity;
 import net.minecraft.world.World;
 
 //big TODO
-public class BNEntity extends MobEntity
+public abstract class BNEntity extends MobEntity
 {
 
   protected BNEntity(EntityType<? extends MobEntity> type, World worldIn)
@@ -15,5 +15,4 @@ public class BNEntity extends MobEntity
 
   public float onlyRenderTicks = 0; // if we wanted to only render every so often this would be set for that... I
                                     // think?
-
 }
