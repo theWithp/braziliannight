@@ -1,5 +1,7 @@
 {
-  "itemGroup.braziliannight": "BN",
-  "item.braziliannight.dim_mirror" = "Dim Mirror",
-  "block.braziliannight.dim_door": "Dim Door"
+  "itemGroup.braziliannight": "Brazilian Night",
+  "item.braziliannight.dim_mirror": "Dim Mirror",
+  "item.braziliannight.i_nimbus": "Nimbus",
+  "block.braziliannight.dim_door": "Dim Door",
+  "entity.braziliannight.nimbus": "Nimbus"
 }
