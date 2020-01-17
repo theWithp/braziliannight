@@ -1,5 +1,6 @@
 package braziliannight.entity;
 
+import braziliannight.BN;
 import braziliannight.BNRegistration;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
@@ -29,6 +30,7 @@ public class BNNimbus extends BNEntity
   public BNNimbus(World w)
     {
       this(BNRegistration.NIMBUS, w);
+      BN.LOG.trace("BNNimbus::new, OK!");
     }
 
   @Override

@@ -15,6 +15,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import braziliannight.BN;
 import braziliannight.BNRegistration;
 import net.minecraft.entity.EntityClassification;
 import net.minecraft.util.math.BlockPos;
@@ -75,11 +76,14 @@ public class BNChunkGenerator extends ChunkGenerator<GenerationSettings>
           worldRows.put(row.get("id").getAsString(), row.get("chars").getAsString());
         }
       legend = new ChunkLegend(rawMap.get("legend").getAsJsonArray());
+      BN.LOG.trace("BNChunkGenerator static setup, OK!");
     }
 
   public BNChunkGenerator(IWorld world, BiomeProvider biomeProvider, GenerationSettings settings)
     {
       super(world, biomeProvider, settings);
+      BN.LOG.trace("BNChunkGenerator::new, OK!");
+
     }
 
   @Override

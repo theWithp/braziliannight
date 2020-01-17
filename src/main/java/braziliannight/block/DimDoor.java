@@ -22,6 +22,7 @@ public class DimDoor extends DoorBlock
   public DimDoor()
     {
       super(Block.Properties.create(Material.PORTAL).hardnessAndResistance(2F));
+      BN.LOG.trace("DimDoor::new, OK!");
 
     }
 

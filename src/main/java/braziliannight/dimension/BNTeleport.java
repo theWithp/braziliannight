@@ -21,6 +21,9 @@ import net.minecraftforge.fml.hooks.BasicEventHooks;
 
 public class BNTeleport
 {
+  private BNTeleport()
+    {}
+
   public static void changeDim (ServerPlayerEntity player, BlockPos pos, DimensionType type)
     { // copy from ServerPlayerEntity#changeDimension
       if (!ForgeHooks.onTravelToDimension(player, type))

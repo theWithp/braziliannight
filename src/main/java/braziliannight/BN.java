@@ -29,6 +29,6 @@ public class BN
 
   public BN()
     {
-      LOG.trace("BN::new");
+      LOG.trace("BN::new, OK!");
     }
 }

@@ -10,6 +10,7 @@ import javax.annotation.Nullable;
 
 import com.google.common.collect.Sets;
 
+import braziliannight.BN;
 import braziliannight.BNRegistration;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.math.BlockPos;
@@ -26,6 +27,7 @@ public class BNBiomeProvider extends BiomeProvider
   public BNBiomeProvider(SingleBiomeProviderSettings settings)
     {
       this.biome = settings.getBiome();
+      BN.LOG.trace("BNBiomeProvider::new, OK!");
     }
 
   @Override

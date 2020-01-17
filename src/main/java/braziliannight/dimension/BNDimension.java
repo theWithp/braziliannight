@@ -2,6 +2,7 @@ package braziliannight.dimension;
 
 import javax.annotation.Nullable;
 
+import braziliannight.BN;
 import braziliannight.BNRegistration;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -19,6 +20,8 @@ public class BNDimension extends Dimension
   public BNDimension(World world, DimensionType type)
     {
       super(world, type);
+      BN.LOG.trace("BNDimension::new, OK!");
+
     }
 
   @Override

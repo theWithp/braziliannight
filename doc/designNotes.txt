@@ -1,8 +1,52 @@
-Library notes
-   My understanding of the documentation is that we do not need to directly register the class with the @Mod entry point.
-   In fact I believe that all registration can get called out of the @Mod FML load event.
-TODO
-   Add a gradle clean task
-      delete *.~ files
-
-
+Todo (For version 0.2.0):
+ Art:
+  Logo for the mod
+  Entity (final names on all these pending):
+   Nimbus
+   Asteroid
+   Sun+Moon (WW)
+   Inaba of Earth (EW)
+   Lightning Spirit (YW)
+   Shadow Ghost (BlaW)
+   Animated Cauldron (PuW)
+   Witch of Sweets (PiW)
+   Ice Chesspieces (IW)
+   Alligator (BluW)
+   Shambling Mound (GW)
+   Burning Squid (FW)
+   (???, 9 more familiars)
+  Block/Item:
+   Dim Door
+   White Door
+   (The other 9 doors)
+   Dim Mirror
+   Vine Chestplate
+   Ice Crown
+   (The other 7 relics)
+ Logic:
+  Entity:
+   Asteroid
+   Sun+Moon (WW)
+   Inaba of Earth (EW)
+   Lightning Spirit (YW)
+   Shadow Ghost (BW)
+   Animated Cauldron (PuW)
+   Witch of Sweets (PiW)
+   Ice Chesspieces (IW)
+   Alligator (BluW)
+   Shambling Mound (GW)
+   Burning Squid (FW)
+   (???, 9 more familiars)
+   Ingame help book (possibly save it for 0.3.0)
+  Block:
+   Dim Door (recipe)
+   The 10 dream doors (need to figure out how far from each other the lairs are)
+   
+  Item:
+   Ice Crown
+   Vine Chestplate
+   ??? (Rest of Relics)
+ Maps:
+  Boss Arenas 10x
+  Boss Mazes 10x (eventually will want these procedural but save it for 0.3.0)
+  Hub

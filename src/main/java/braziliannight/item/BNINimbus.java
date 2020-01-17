@@ -17,6 +17,8 @@ public class BNINimbus extends BNItem
   public BNINimbus()
     {
       super(new Properties().maxStackSize(1).group(BN.GROUP));
+      BN.LOG.trace("BNINimbus::new, OK!");
+
     }
 
   @Override

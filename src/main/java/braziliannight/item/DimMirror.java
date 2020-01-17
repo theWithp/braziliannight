@@ -18,6 +18,8 @@ public class DimMirror extends BNItem
   public DimMirror()
     {
       super(new Properties().maxStackSize(1).group(BN.GROUP));
+      BN.LOG.trace("DimMirror::new, OK!");
+
     }
 
   @Override
