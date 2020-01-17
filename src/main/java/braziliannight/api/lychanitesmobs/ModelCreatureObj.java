@@ -20,7 +20,7 @@ import com.google.gson.JsonObject;
 import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.platform.GlStateManager;
 
-import braziliannight.BrazilianNight;
+import braziliannight.BN;
 import braziliannight.entity.BNEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -126,14 +126,14 @@ public class ModelCreatureObj extends ModelCreatureBase implements IAnimationMod
     {
 
       // Load Obj Model:
-      this.wavefrontObject = new TessellatorModel(new ResourceLocation(BrazilianNight.MODID, "models/" + path + ".obj"));
+      this.wavefrontObject = new TessellatorModel(new ResourceLocation(BN.MODID, "models/" + path + ".obj"));
       this.wavefrontParts = this.wavefrontObject.objObjects;
 
       // Create Animator:
       this.animator = new Animator();
 
       // Load Model Parts:
-      ResourceLocation modelPartsLocation = new ResourceLocation(BrazilianNight.MODID, "models/" + path + "_parts.json");
+      ResourceLocation modelPartsLocation = new ResourceLocation(BN.MODID, "models/" + path + "_parts.json");
       try {
 			Gson gson = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
           InputStream in = Minecraft.getInstance().getResourceManager().getResource(modelPartsLocation).getInputStream();
@@ -163,7 +163,7 @@ public class ModelCreatureObj extends ModelCreatureBase implements IAnimationMod
         }
 
       // Load Animations:
-      ResourceLocation animationLocation = new ResourceLocation(BrazilianNight.MODID,
+      ResourceLocation animationLocation = new ResourceLocation(BN.MODID,
           "models/" + path + "_animation.json");
 		try {
 			Gson gson = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();

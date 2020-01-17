@@ -34,7 +34,6 @@ public class BNNimbus extends BNEntity
   @Override
   public void tick ()
     {
-      this.stepHeight = 1.02f; // ????
 
       if (EffectiveSide.get().isClient())
         {
@@ -127,7 +126,6 @@ public class BNNimbus extends BNEntity
               par2 *= 0.25F;
             }
 
-          this.stepHeight = 1.0F;
           this.jumpMovementFactor = this.getAIMoveSpeed() * 0.1F;
 
           if (EffectiveSide.get().isServer())

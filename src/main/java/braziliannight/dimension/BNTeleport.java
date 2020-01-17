@@ -1,6 +1,6 @@
 package braziliannight.dimension;
 
-import braziliannight.BrazilianNight;
+import braziliannight.BN;
 import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.play.server.SPlayEntityEffectPacket;
@@ -73,10 +73,10 @@ public class BNTeleport
           World w = p.world;
           // Go To Portallis
           if (w.getDimension().getType().equals(DimensionType.OVERWORLD))
-            changeDim(p, new BlockPos(0, 33, 0), DimensionType.byName(BrazilianNight.DIM_LOC));
+            changeDim(p, new BlockPos(0, 33, 0), DimensionType.byName(BN.DIM_LOC));
 
           // Go to Spawn (bed happens later)
-          else if (w.getDimension().getType().equals(DimensionType.byName(BrazilianNight.DIM_LOC)))
+          else if (w.getDimension().getType().equals(DimensionType.byName(BN.DIM_LOC)))
             {
               World overWorld = w.getServer().getWorld(DimensionType.OVERWORLD);
               BlockPos pos = overWorld.getSpawnPoint();

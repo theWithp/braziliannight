@@ -2,7 +2,7 @@ package braziliannight.item;
 
 import javax.annotation.Nonnull;
 
-import braziliannight.BrazilianNight;
+import braziliannight.BN;
 import braziliannight.dimension.BNTeleport;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -17,7 +17,7 @@ public class DimMirror extends BNItem
 
   public DimMirror()
     {
-      super(new Properties().maxStackSize(1).group(BrazilianNight.modInstance.GROUP));
+      super(new Properties().maxStackSize(1).group(BN.GROUP));
     }
 
   @Override

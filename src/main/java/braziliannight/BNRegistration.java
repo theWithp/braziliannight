@@ -1,6 +1,6 @@
 package braziliannight;
 
-import static braziliannight.BrazilianNight.MODID;
+import static braziliannight.BN.MODID;
 
 import java.util.function.BiFunction;
 
@@ -57,6 +57,8 @@ public class BNRegistration
   @SubscribeEvent
   public static void onDimensionModRegistry (RegistryEvent.Register<ModDimension> event)
     {
+      BN.LOG.info("BNR: ModDimension Registration Event");
+
       ModDimension dim = new ModDimension()
         {
           @Override
@@ -64,14 +66,16 @@ public class BNRegistration
             {
               return BNDimension::new;
             }
-        }.setRegistryName(BrazilianNight.DIM_LOC);
+        }.setRegistryName(BN.DIM_LOC);
       event.getRegistry().register(dim);
-      DimensionManager.registerDimension(BrazilianNight.DIM_LOC, dim, null, false);
+      DimensionManager.registerDimension(BN.DIM_LOC, dim, null, false);
     }
 
   @SubscribeEvent
   public static void onChunkGeneratorTypeRegistry (RegistryEvent.Register<ChunkGeneratorType<?, ?>> event)
     {
+      BN.LOG.info("BNR: ChunkGeneratorType Registration Event");
+
       event.getRegistry().register(new ChunkGeneratorType<>(BNChunkGenerator::new, false, GenerationSettings::new)
           .setRegistryName(MODID, "chunk_generator"));
     }
@@ -79,6 +83,8 @@ public class BNRegistration
   @SubscribeEvent
   public static void onBiomeProviderTypeRegistry (RegistryEvent.Register<BiomeProviderType<?, ?>> event)
     {
+      BN.LOG.info("BNR: BiomeProviderType Registration Event");
+
       event.getRegistry().register(new BiomeProviderType<>(BNBiomeProvider::new, SingleBiomeProviderSettings::new)
           .setRegistryName(MODID, "biome_provider"));
     }
@@ -86,12 +92,16 @@ public class BNRegistration
   @SubscribeEvent
   public static void onBlockRegistry (RegistryEvent.Register<Block> event)
     {
+      BN.LOG.info("BNR: Block Registration Event");
+
       event.getRegistry().register((new DimDoor()).setRegistryName(MODID, "dim_door"));
     }
 
   @SubscribeEvent
   public static void onBiomeRegistry (RegistryEvent.Register<Biome> ev)
     {
+      BN.LOG.info("BNR: Biome Registration Event");
+
       Biome b = new BNBiome().setRegistryName(MODID, "portallis_hub");
       ForgeRegistries.BIOMES.register(b);
       BiomeDictionary.addTypes(b, BiomeDictionary.Type.VOID);
@@ -100,8 +110,10 @@ public class BNRegistration
   @SubscribeEvent
   public static void onItemRegistry (RegistryEvent.Register<Item> ev)
     {
-      ev.getRegistry().register(new BlockItem(DIM_DOOR, new Item.Properties().group(BrazilianNight.modInstance.GROUP))
-          .setRegistryName(DIM_DOOR.getRegistryName()));
+      BN.LOG.info("BNR: Item Registration Event");
+
+      ev.getRegistry().register(
+          new BlockItem(DIM_DOOR, new Item.Properties().group(BN.GROUP)).setRegistryName(DIM_DOOR.getRegistryName()));
       ev.getRegistry().register(setup(new DimMirror(), "dim_mirror"));
       ev.getRegistry().register(setup(new BNINimbus(), "i_nimbus"));
     }
@@ -109,20 +121,15 @@ public class BNRegistration
   @SubscribeEvent
   public static void registerEntities (final RegistryEvent.Register<EntityType<?>> ev)
     {
-      /*
-       * TODO make a setup for this crap this is disgusting ev.getRegistry()
-       * .register(EntityType.Builder.<BNNimbus>create(BNNimbus::new,
-       * EntityClassification.MISC).size(0.5f, 1)
-       * .setUpdateInterval(3).setTrackingRange(32).setShouldReceiveVelocityUpdates(
-       * false).build("nimbus") .setRegistryName(MODID, "nimbus"));
-       */
+      BN.LOG.info("BNR: EntityType Registration Event");
+
       ev.getRegistry().register(NIMBUS);
     }
 
   @Nonnull
   private static <T extends IForgeRegistryEntry<T>> T setup (@Nonnull final T entry, @Nonnull final String name)
     {
-      return setup(entry, new ResourceLocation(BrazilianNight.MODID, name));
+      return setup(entry, new ResourceLocation(BN.MODID, name));
     }
 
   @Nonnull

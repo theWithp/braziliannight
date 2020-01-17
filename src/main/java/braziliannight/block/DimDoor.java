@@ -1,6 +1,6 @@
 package braziliannight.block;
 
-import braziliannight.BrazilianNight;
+import braziliannight.BN;
 import braziliannight.dimension.BNTeleport;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -29,7 +29,7 @@ public class DimDoor extends DoorBlock
   public boolean isValidPosition (BlockState state, IWorldReader worldIn, BlockPos pos)
     {
       return (worldIn.getDimension().getType().getId() == DimensionType.OVERWORLD.getId()
-          || worldIn.getDimension().getType() == DimensionType.byName(BrazilianNight.DIM_LOC)
+          || worldIn.getDimension().getType() == DimensionType.byName(BN.DIM_LOC)
               && super.isValidPosition(state, worldIn, pos));
     }
 

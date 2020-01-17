@@ -2,7 +2,7 @@ package braziliannight.item;
 
 import javax.annotation.Nonnull;
 
-import braziliannight.BrazilianNight;
+import braziliannight.BN;
 import braziliannight.entity.BNNimbus;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -16,7 +16,7 @@ public class BNINimbus extends BNItem
 {
   public BNINimbus()
     {
-      super(new Properties().maxStackSize(1).group(BrazilianNight.modInstance.GROUP));
+      super(new Properties().maxStackSize(1).group(BN.GROUP));
     }
 
   @Override
