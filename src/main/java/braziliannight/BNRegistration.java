@@ -6,6 +6,7 @@ import java.util.function.BiFunction;
 
 import javax.annotation.Nonnull;
 
+import braziliannight.block.BrazilianLight;
 import braziliannight.block.DimDoor;
 import braziliannight.dimension.BNBiome;
 import braziliannight.dimension.BNBiomeProvider;
@@ -49,6 +50,7 @@ public class BNRegistration
   public static final ChunkGeneratorType<GenerationSettings, BNChunkGenerator> CHUNK_GENERATOR = null;
   public static final BiomeProviderType<SingleBiomeProviderSettings, BNBiomeProvider> BIOME_PROVIDER = null;
   public static final Block DIM_DOOR = null;
+  public static final Block LIGHT = null;
   public static final Biome PORTALLIS_HUB = null;
   public static final Item DIM_MIRROR = null;
   public static final Item I_NIMBUS = null;
@@ -96,8 +98,9 @@ public class BNRegistration
   public static void onBlockRegistry (RegistryEvent.Register<Block> event)
     {
       BN.LOG.info("BNR: Block Registration Event");
-
       event.getRegistry().register((new DimDoor()).setRegistryName(MODID, "dim_door"));
+      event.getRegistry().register((new BrazilianLight()).setRegistryName(MODID, "light"));
+
     }
 
   @SubscribeEvent
@@ -117,6 +120,8 @@ public class BNRegistration
 
       ev.getRegistry().register(
           new BlockItem(DIM_DOOR, new Item.Properties().group(BN.GROUP)).setRegistryName(DIM_DOOR.getRegistryName()));
+      ev.getRegistry().register(
+          new BlockItem(LIGHT, new Item.Properties().group(BN.GROUP)).setRegistryName(LIGHT.getRegistryName()));
       ev.getRegistry().register(setup(new DimMirror(), "dim_mirror"));
       ev.getRegistry().register(setup(new BNINimbus(), "i_nimbus"));
     }
