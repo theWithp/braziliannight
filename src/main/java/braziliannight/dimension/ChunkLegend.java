@@ -7,6 +7,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import braziliannight.BNRegistration;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -36,6 +37,8 @@ public class ChunkLegend
       // TODO definitely not unbreakable
       lookup.put("BLACK_CONCRETE", Blocks.BLACK_CONCRETE.getDefaultState());
       lookup.put("BEDROCK", Blocks.BEDROCK.getDefaultState());
+      lookup.put("KILLPLANE", BNRegistration.KILLPLANE.getDefaultState());
+      lookup.put("LIGHT", BNRegistration.LIGHT.getDefaultState());
 
       return lookup;
     }

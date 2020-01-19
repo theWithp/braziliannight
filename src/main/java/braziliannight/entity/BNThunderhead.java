@@ -4,10 +4,10 @@ import static net.minecraft.entity.SharedMonsterAttributes.KNOCKBACK_RESISTANCE;
 
 import braziliannight.BN;
 import braziliannight.BNRegistration;
-import net.minecraft.entity.CreatureEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.ai.goal.HurtByTargetGoal;
 import net.minecraft.entity.ai.goal.LookAtGoal;
@@ -15,18 +15,28 @@ import net.minecraft.entity.ai.goal.LookRandomlyGoal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.goal.NearestAttackableTargetGoal;
 import net.minecraft.entity.ai.goal.WaterAvoidingRandomWalkingGoal;
+import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
-public class BNThunderhead extends CreatureEntity implements BNEntity
+public class BNThunderhead extends MonsterEntity implements BNEntity
 {
   public BNThunderhead(EntityType<BNThunderhead> bully, World worldIn)
     {
       super(bully, worldIn);
+    }
 
+  @Override
+  protected void registerAttributes ()
+    {
+      super.registerAttributes();
+      this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(1);
+      this.getAttribute(SharedMonsterAttributes.FOLLOW_RANGE).setBaseValue(35.0D);
+      this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.5D);
+      this.getAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(1.0D);
     }
 
   public BNThunderhead(World w)
@@ -52,6 +62,8 @@ public class BNThunderhead extends CreatureEntity implements BNEntity
       this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
       this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
       this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, BNThunderhead.class, true));
+
     }
 
   @Override
@@ -84,7 +96,7 @@ public class BNThunderhead extends CreatureEntity implements BNEntity
     {
       if (DamageSource.OUT_OF_WORLD.equals(source))
         {
-          this.dead = true;
+          this.setHealth(0);
           return true;
         }
 

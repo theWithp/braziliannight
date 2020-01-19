@@ -149,14 +149,14 @@
 	      "blockId": "BLACK_CONCRETE",
 	      "heightFromBase": 94},
 	  {
-	      "blockId": "BEDROCK",
+	      "blockId": "KILLPLANE",
 	      "yOffset": 95}]},
      {"char": "B",
-      "actions": [{"blockId": "BEDROCK"}]},
+      "actions": [{"blockId": "KILLPLANE"}]},
      {"char": ".",
       "actions": [
 	  {"blockId": "BLACK_CONCRETE"},
       	  {"blockId": "BLACK_CONCRETE",
 	   "yOffset": 94},
-	  {"blockId": "BEDROCK",
+	  {"blockId": "KILLPLANE",
 	   "yOffset": 95}]}]}

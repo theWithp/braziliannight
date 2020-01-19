@@ -23,6 +23,7 @@ import net.minecraft.entity.EntityClassification;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
@@ -60,6 +61,8 @@ public class BNRegistration
       EntityType.Builder.<BNNimbus>create(BNNimbus::new, EntityClassification.MISC).size(0.5f, 1));
   public static final EntityType<BNThunderhead> THUNDERHEAD = setupEntityType("thunderhead",
       EntityType.Builder.<BNThunderhead>create(BNThunderhead::new, EntityClassification.MISC).size(0.5f, 1));
+
+  public static final Item THUNDERHEAD_EGG = null;
 
   @SubscribeEvent
   public static void onDimensionModRegistry (RegistryEvent.Register<ModDimension> event)
@@ -120,15 +123,21 @@ public class BNRegistration
   public static void onItemRegistry (RegistryEvent.Register<Item> ev)
     {
       BN.LOG.info("BNR: Item Registration Event");
-
+      //portals
       ev.getRegistry().register(
           new BlockItem(DIM_DOOR, new Item.Properties().group(BN.GROUP)).setRegistryName(DIM_DOOR.getRegistryName()));
+      ev.getRegistry().register(setup(new DimMirror(), "dim_mirror"));
+
+      //technical blocks
       ev.getRegistry().register(
           new BlockItem(LIGHT, new Item.Properties().group(BN.GROUP)).setRegistryName(LIGHT.getRegistryName()));
       ev.getRegistry().register(
           new BlockItem(KILLPLANE, new Item.Properties().group(BN.GROUP)).setRegistryName(KILLPLANE.getRegistryName()));
-      ev.getRegistry().register(setup(new DimMirror(), "dim_mirror"));
+
+      //eggs
       ev.getRegistry().register(setup(new BNINimbus(), "i_nimbus"));
+      ev.getRegistry().register(new SpawnEggItem(THUNDERHEAD, 0, 0, new Item.Properties().group(BN.GROUP))
+          .setRegistryName(MODID, "thunderhead_egg"));
     }
 
   @SubscribeEvent
