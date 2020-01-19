@@ -11,6 +11,7 @@ import net.minecraft.network.play.server.SServerDifficultyPacket;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
@@ -103,5 +104,11 @@ public class BNTeleport
           return true;
         }
       return false;
+    }
+
+  public static void teleport (ServerPlayerEntity playerIn, Vec3i pos2, DimensionType dim2)
+    {
+      changeDim(playerIn, new BlockPos(pos2), dim2);
+
     }
 }

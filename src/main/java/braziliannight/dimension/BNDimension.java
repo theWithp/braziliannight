@@ -21,7 +21,7 @@ public class BNDimension extends Dimension
     {
       super(world, type);
       BN.LOG.trace("BNDimension::new, OK!");
-
+      this.setSpawnPoint(new BlockPos(0, 32, 0));
     }
 
   @Override

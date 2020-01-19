@@ -39,6 +39,7 @@ public class ChunkLegend
       lookup.put("BEDROCK", Blocks.BEDROCK.getDefaultState());
       lookup.put("KILLPLANE", BNRegistration.KILLPLANE.getDefaultState());
       lookup.put("LIGHT", BNRegistration.LIGHT.getDefaultState());
+      lookup.put("DOOR", Blocks.ACACIA_DOOR.getDefaultState());
 
       return lookup;
     }

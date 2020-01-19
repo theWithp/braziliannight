@@ -79,8 +79,8 @@ public class BNThunderhead extends MonsterEntity implements BNEntity
               if (attrib != null)
                 resist -= attrib.getValue();
 
-              Vec3d dir = target.getPositionVector().subtract(this.getPositionVector()).normalize().mul(2 * resist,
-                  2 * resist, 2 * resist);//TODO jasonize intensity
+              Vec3d dir = target.getPositionVector().subtract(this.getPositionVector()).normalize().mul(resist, resist,
+                  resist);//TODO jasonize intensity
               target.addVelocity(dir.x, dir.y, dir.z);
               target.velocityChanged = true;
             }

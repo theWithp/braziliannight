@@ -7,8 +7,8 @@ import java.util.function.BiFunction;
 import javax.annotation.Nonnull;
 
 import braziliannight.block.BrazilianLight;
-import braziliannight.block.DimDoor;
 import braziliannight.block.Killplane;
+import braziliannight.block.WarpDoor;
 import braziliannight.dimension.BNBiome;
 import braziliannight.dimension.BNBiomeProvider;
 import braziliannight.dimension.BNChunkGenerator;
@@ -103,7 +103,7 @@ public class BNRegistration
   public static void onBlockRegistry (RegistryEvent.Register<Block> event)
     {
       BN.LOG.info("BNR: Block Registration Event");
-      event.getRegistry().register((new DimDoor()).setRegistryName(MODID, "dim_door"));
+      event.getRegistry().register((new WarpDoor()).setRegistryName(MODID, "dim_door"));
       event.getRegistry().register((new BrazilianLight()).setRegistryName(MODID, "light"));
       event.getRegistry().register((new Killplane()).setRegistryName(MODID, "killplane"));
 

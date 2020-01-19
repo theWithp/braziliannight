@@ -3,19 +3,19 @@
     "chunkDefinitions":
     [{"x": -1,
       "z": -1,
-      "layers": ["hubFloor"]},
+      "layers": ["hubFloor", "hub2"]},
      {"x": -1,
       "z": 0,
-      "layers": ["hubFloor"]},
+      "layers": ["hubFloor", "hub3"]},
      {"x": -1,
       "z": 1,
       "layers": ["hubFloor"]},
      {"x": 0,
       "z": -1,
-      "layers": ["hubFloor"]},
+      "layers": ["hubFloor", "hub1"]},
      {"x": 0,
       "z": 0,
-      "layers": ["hubFloor"]},
+      "layers": ["hubFloor", "hub0"]},
      {"x": 0,
       "z": 1,
       "layers": ["hubFloor"]},
@@ -127,7 +127,20 @@
 	  {"id": "hubSouthEast",
 	  "baseYPos": 32,
 	  "map":[
-	  "rightEdge", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"]}],
+	      "rightEdge", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X", "X"]},
+     {"id": "hub0",
+      "baseYPos": 33,
+      "map": ["E", "E", "Door8", "E", "E", "E", "Door6", "E", "Door2", "E", "E", "E", "E", "E", "E", "E"]},
+     {"id": "hub1",
+      "baseYPos": 33,
+      "map": ["E", "E", "Door8", "E", "E", "E", "Door10", "E", "Door14", "E", "E", "E", "E", "E", "E", "E"]},
+     {"id": "hub2",
+      "baseYPos": 33,
+      "map": ["E", "E", "E", "E", "E", "E", "E", "E", "Door14", "E", "Door10", "E", "E", "E", "Door8", "E"]},
+     {"id": "hub3",
+      "baseYPos": 33,
+      "map": ["E", "E", "E", "E", "E", "E", "E", "E", "Door2", "E", "Door6", "E", "E", "E", "Door8", "E"]}
+    ],
     
     "rowDefinitions":
     [{"id": "X",
@@ -139,11 +152,33 @@
      {"id": "rightEdge",
       "chars": ".XXXXXXXXXXXXXXX"},
      {"id": "B",
-      "chars": "BBBBBBBBBBBBBBBB"}],
+      "chars": "BBBBBBBBBBBBBBBB"},
+     {"id": "E",
+      "chars": "----------------"},
+     {"id": "Door2",
+      "chars": "--D-------------"},
+     {"id": "Door6",
+      "chars": "------D---------"},
+     {"id": "Door8",
+      "chars": "--------D-------"},
+     {"id": "Door10",
+      "chars": "----------D-----"},
+     {"id": "Door14",
+      "chars": "--------------D-"}],
     
     "defaultLayer": "filler",
+    
     "legend": 
-    [{"char": "X",
+    [{"char": "-",
+      "actions": []},     
+     {"char": "D",
+      "actions": [
+	  {"blockId": "DOOR"},
+	  {
+	      "blockId": "LIGHT",
+	      "yOffset": 2
+	  }]},
+     {"char": "X",
       "actions": [
 	  {
 	      "blockId": "BLACK_CONCRETE",
