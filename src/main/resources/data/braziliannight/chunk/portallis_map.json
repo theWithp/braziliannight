@@ -75,7 +75,10 @@
       "layers": ["hubEast"]},
       {"x": 1,
       "z": 2,
-      "layers": ["hubEast"]}],
+      "layers": ["hubEast"]},
+      {"x": 10,
+      "z": 0,
+      "layers": ["hubFloor"]}],
     
     "layerDefinitions":
     [{"id": "filler",

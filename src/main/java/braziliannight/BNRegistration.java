@@ -25,6 +25,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -52,6 +53,7 @@ public class BNRegistration
   public static final ChunkGeneratorType<GenerationSettings, BNChunkGenerator> CHUNK_GENERATOR = null;
   public static final BiomeProviderType<SingleBiomeProviderSettings, BNBiomeProvider> BIOME_PROVIDER = null;
   public static final Block DIM_DOOR = null;
+  public static final Block WHITE_DOOR = null;
   public static final Block LIGHT = null;
   public static final Block KILLPLANE = null;
   public static final Biome PORTALLIS_HUB = null;
@@ -104,6 +106,11 @@ public class BNRegistration
     {
       BN.LOG.info("BNR: Block Registration Event");
       event.getRegistry().register((new WarpDoor()).setRegistryName(MODID, "dim_door"));
+      event.getRegistry()
+          .register((new WarpDoor(new BlockPos(0, 33, 0), new BlockPos(160, 33, 0),
+              new ResourceLocation(BN.MODID, BN.DIMNAME), new ResourceLocation(BN.MODID, BN.DIMNAME)))
+                  .setRegistryName(MODID, "white_door"));
+
       event.getRegistry().register((new BrazilianLight()).setRegistryName(MODID, "light"));
       event.getRegistry().register((new Killplane()).setRegistryName(MODID, "killplane"));
 
@@ -126,6 +133,9 @@ public class BNRegistration
       //portals
       ev.getRegistry().register(
           new BlockItem(DIM_DOOR, new Item.Properties().group(BN.GROUP)).setRegistryName(DIM_DOOR.getRegistryName()));
+      ev.getRegistry().register(new BlockItem(WHITE_DOOR, new Item.Properties().group(BN.GROUP))
+          .setRegistryName(WHITE_DOOR.getRegistryName()));
+
       ev.getRegistry().register(setup(new DimMirror(), "dim_mirror"));
 
       //technical blocks
