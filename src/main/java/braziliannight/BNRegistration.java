@@ -12,6 +12,7 @@ import braziliannight.dimension.BNBiomeProvider;
 import braziliannight.dimension.BNChunkGenerator;
 import braziliannight.dimension.BNDimension;
 import braziliannight.entity.BNNimbus;
+import braziliannight.entity.BNThunderhead;
 import braziliannight.item.BNINimbus;
 import braziliannight.item.DimMirror;
 import net.minecraft.block.Block;
@@ -53,6 +54,8 @@ public class BNRegistration
   public static final Item I_NIMBUS = null;
   public static final EntityType<BNNimbus> NIMBUS = setupEntityType("nimbus",
       EntityType.Builder.<BNNimbus>create(BNNimbus::new, EntityClassification.MISC).size(0.5f, 1));
+  public static final EntityType<BNThunderhead> THUNDERHEAD = setupEntityType("thunderhead",
+      EntityType.Builder.<BNThunderhead>create(BNThunderhead::new, EntityClassification.MISC).size(0.5f, 1));
 
   @SubscribeEvent
   public static void onDimensionModRegistry (RegistryEvent.Register<ModDimension> event)
@@ -124,6 +127,8 @@ public class BNRegistration
       BN.LOG.info("BNR: EntityType Registration Event");
 
       ev.getRegistry().register(NIMBUS);
+      ev.getRegistry().register(THUNDERHEAD);
+
     }
 
   @Nonnull

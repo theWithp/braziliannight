@@ -5,6 +5,7 @@ import braziliannight.BNRegistration;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,14 +18,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.thread.EffectiveSide;
 
-public class BNNimbus extends BNEntity
+public class BNNimbus extends MobEntity implements BNEntity
 {
 
   public BNNimbus(EntityType<BNNimbus> entNimbus, World worldIn)
     {
       super(entNimbus, worldIn);
-
-      // step height?
     }
 
   public BNNimbus(World w)

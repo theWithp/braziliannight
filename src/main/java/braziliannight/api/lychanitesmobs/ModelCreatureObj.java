@@ -8,7 +8,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-
 import org.apache.commons.io.IOUtils;
 
 import com.google.gson.Gson;
@@ -16,18 +15,17 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-
-import net.minecraft.client.Minecraft;
 import com.mojang.blaze3d.platform.GlStateManager;
 
 import braziliannight.BN;
-import braziliannight.entity.BNEntity;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MobEntity;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
 public class ModelCreatureObj extends ModelCreatureBase implements IAnimationModel
@@ -134,27 +132,31 @@ public class ModelCreatureObj extends ModelCreatureBase implements IAnimationMod
 
       // Load Model Parts:
       ResourceLocation modelPartsLocation = new ResourceLocation(BN.MODID, "models/" + path + "_parts.json");
-      try {
-			Gson gson = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
-          InputStream in = Minecraft.getInstance().getResourceManager().getResource(modelPartsLocation).getInputStream();
+      try
+        {
+          Gson gson = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
+          InputStream in = Minecraft.getInstance().getResourceManager().getResource(modelPartsLocation)
+              .getInputStream();
           BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-          try {
-				JsonArray jsonArray = JSONUtils.fromJson(gson, reader, JsonArray.class, false);
+          try
+            {
+              JsonArray jsonArray = JSONUtils.fromJson(gson, reader, JsonArray.class, false);
               Iterator<JsonElement> jsonIterator = jsonArray.iterator();
-              while (jsonIterator.hasNext()) {
+              while (jsonIterator.hasNext())
+                {
                   JsonObject partJson = jsonIterator.next().getAsJsonObject();
-					ModelObjPart animationPart = new ModelObjPart();
-					animationPart.loadFromJson(partJson);
-					this.addAnimationPart(animationPart);
-              }
-          }
-          finally {
+                  ModelObjPart animationPart = new ModelObjPart();
+                  animationPart.loadFromJson(partJson);
+                  this.addAnimationPart(animationPart);
+                }
+            } finally
+            {
               IOUtils.closeQuietly(reader);
-          }
-      }
-      catch (Exception e) {
-			// TODO: Logging
-      }
+            }
+        } catch (Exception e)
+        {
+          // TODO: Logging
+        }
 
       // Assign Model Part Children:
       for (ModelObjPart part : this.animationParts.values())
@@ -163,25 +165,25 @@ public class ModelCreatureObj extends ModelCreatureBase implements IAnimationMod
         }
 
       // Load Animations:
-      ResourceLocation animationLocation = new ResourceLocation(BN.MODID,
-          "models/" + path + "_animation.json");
-		try {
-			Gson gson = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
-			InputStream in = Minecraft.getInstance().getResourceManager().getResource(animationLocation).getInputStream();
-			BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-			try {
-				JsonObject json = JSONUtils.fromJson(gson, reader, JsonObject.class, false);
-				this.animation = new ModelAnimation();
-				this.animation.loadFromJson(json);
-			}
-			finally {
-				IOUtils.closeQuietly(reader);
-			}
-		}
-		catch (Exception e) {
-			//TODO: Logging
-		}
-
+      ResourceLocation animationLocation = new ResourceLocation(BN.MODID, "models/" + path + "_animation.json");
+      try
+        {
+          Gson gson = (new GsonBuilder()).setPrettyPrinting().disableHtmlEscaping().create();
+          InputStream in = Minecraft.getInstance().getResourceManager().getResource(animationLocation).getInputStream();
+          BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+          try
+            {
+              JsonObject json = JSONUtils.fromJson(gson, reader, JsonObject.class, false);
+              this.animation = new ModelAnimation();
+              this.animation.loadFromJson(json);
+            } finally
+            {
+              IOUtils.closeQuietly(reader);
+            }
+        } catch (Exception e)
+        {
+          //TODO: Logging
+        }
 
       return this;
     }
@@ -231,35 +233,43 @@ public class ModelCreatureObj extends ModelCreatureBase implements IAnimationMod
    *                 cleared manually.
    */
   @Override
-	public void render(BNEntity entity, float time, float distance, float loop, float lookY, float lookX, float scale, boolean animate) {
-				scale *= 16;
-				scale *= entity.getRenderScale();
+  public void render (MobEntity entity, float time, float distance, float loop, float lookY, float lookX, float scale,
+      boolean animate)
+    {
+      scale *= 16;
+      scale *= entity.getRenderScale();
 
-		// GUI Render:
-		if(entity != null) {
-			if(entity.onlyRenderTicks >= 0) {
-				loop = entity.onlyRenderTicks;
-			}
-		}
+      /*// GUI Render:
+      if (entity != null)
+        {
+          if (entity.onlyRenderTicks >= 0)
+            {
+              loop = entity.onlyRenderTicks;
+            }
+        }
+      */
 
-		// Animation States:
+      // Animation States:
       this.currentModelState = this.getModelState(entity);
-			this.updateAttackProgress(entity);
+      this.updateAttackProgress(entity);
 
       // Generate Animation Frames:
-		if(animate) {
-			this.generateAnimationFrames(entity, time, distance, loop, lookY, lookX, scale);
-		}
+      if (animate)
+        {
+          this.generateAnimationFrames(entity, time, distance, loop, lookY, lookX, scale);
+        }
 
-		// Render Parts:
-      for(ObjObject part : this.wavefrontParts) {
+      // Render Parts:
+      for (ObjObject part : this.wavefrontParts)
+        {
           String partName = part.getName().toLowerCase();
-          if(!this.canRenderPart(partName, entity))
-              continue;
+          if (!this.canRenderPart(partName, entity))
+            continue;
           this.currentAnimationPart = this.animationParts.get(partName);
-          if(this.currentAnimationPart == null) {
-          	continue;
-			}
+          if (this.currentAnimationPart == null)
+            {
+              continue;
+            }
 
           // Begin Rendering Part:
           GlStateManager.pushMatrix();
@@ -275,17 +285,19 @@ public class ModelCreatureObj extends ModelCreatureBase implements IAnimationMod
           this.currentAnimationPart.applyAnimationFrames(this.animator);
 
           // Render Part:
-			this.onRenderStart(entity);
-          this.wavefrontObject.renderGroup(part, this.getPartColor(partName, entity, loop), this.getPartTextureOffset(partName, entity, loop));
-			this.onRenderFinish(entity);
-			GlStateManager.popMatrix();
-		}
+          this.onRenderStart(entity);
+          this.wavefrontObject.renderGroup(part, this.getPartColor(partName, entity, loop),
+              this.getPartTextureOffset(partName, entity, loop));
+          this.onRenderFinish(entity);
+          GlStateManager.popMatrix();
+        }
 
-		// Clear Animation Frames:
-		if(animate) {
-			this.clearAnimationFrames();
-		}
-  }
+      // Clear Animation Frames:
+      if (animate)
+        {
+          this.clearAnimationFrames();
+        }
+    }
 
   /** Called just before a layer is rendered. **/
   public void onRenderStart (Entity entity)

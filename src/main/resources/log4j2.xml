@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- In practice this configuration causes debug information to dump to run/logs/bn_debug.log 
+     (only keeps log of the last run) -->
 <Configuration status="debug">
 	<Appenders>
-		<File name="BNLogfile" filename="logs/bn_debug.log">
+		<File name="BNLogfile" filename="logs/bn_debug.log" append="false">
 			<PatternLayout pattern="%d{yyyy-mm-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
 		</File>
 	</Appenders>
