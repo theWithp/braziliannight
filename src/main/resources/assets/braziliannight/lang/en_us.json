@@ -4,6 +4,7 @@
   "item.braziliannight.i_nimbus": "Nimbus",
   "block.braziliannight.dim_door": "Dim Door",
   "block.braziliannight.dim_door": "Light",  
+  "block.braziliannight.killplane": "Nothing At All",
   "entity.braziliannight.nimbus": "Nimbus",
-  "entity.braziliannight.thunderhead": "Thunderhead"
+  "entity.braziliannight.thunderhead": "Thunderhead",  
 }

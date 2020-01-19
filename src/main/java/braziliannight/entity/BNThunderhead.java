@@ -82,6 +82,12 @@ public class BNThunderhead extends CreatureEntity implements BNEntity
   @Override
   public boolean attackEntityFrom (DamageSource source, float amount)
     {
+      if (DamageSource.OUT_OF_WORLD.equals(source))
+        {
+          this.dead = true;
+          return true;
+        }
+
       if (amount <= 0)
         return false;
       Entity entity1 = source.getTrueSource();
