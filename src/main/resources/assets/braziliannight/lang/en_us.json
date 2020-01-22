@@ -1,11 +1,13 @@
 {
   "itemGroup.braziliannight": "Brazilian Night",
   "item.braziliannight.dim_mirror": "Dim Mirror",
+  "item.braziliannight.charm_xyz": "Charm of Xyz",
   "item.braziliannight.i_nimbus": "Nimbus",
   "item.braziliannight.thunderhead_egg": "Thunderhead Egg",
   "block.braziliannight.dim_door": "Dim Door",
-  "block.braziliannight.dim_door": "Light",  
+   "block.braziliannight.white_door": "White Door",
+  "block.braziliannight.light": "Light",  
   "block.braziliannight.killplane": "Nothing At All",
   "entity.braziliannight.nimbus": "Nimbus",
-  "entity.braziliannight.thunderhead": "Thunderhead",  
+  "entity.braziliannight.thunderhead": "Thunderhead"
 }

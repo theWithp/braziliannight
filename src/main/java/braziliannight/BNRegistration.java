@@ -7,8 +7,8 @@ import java.util.function.BiFunction;
 import javax.annotation.Nonnull;
 
 import braziliannight.block.BrazilianLight;
-import braziliannight.block.DimDoor;
 import braziliannight.block.Killplane;
+import braziliannight.block.WarpDoor;
 import braziliannight.dimension.BNBiome;
 import braziliannight.dimension.BNBiomeProvider;
 import braziliannight.dimension.BNChunkGenerator;
@@ -16,6 +16,7 @@ import braziliannight.dimension.BNDimension;
 import braziliannight.entity.BNNimbus;
 import braziliannight.entity.BNThunderhead;
 import braziliannight.item.BNINimbus;
+import braziliannight.item.CharmXyz;
 import braziliannight.item.DimMirror;
 import braziliannight.render.RenderThunderhead;
 import net.minecraft.block.Block;
@@ -26,6 +27,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.SpawnEggItem;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
@@ -55,11 +57,14 @@ public class BNRegistration
   public static final ChunkGeneratorType<GenerationSettings, BNChunkGenerator> CHUNK_GENERATOR = null;
   public static final BiomeProviderType<SingleBiomeProviderSettings, BNBiomeProvider> BIOME_PROVIDER = null;
   public static final Block DIM_DOOR = null;
+  public static final Block WHITE_DOOR = null;
   public static final Block LIGHT = null;
   public static final Block KILLPLANE = null;
   public static final Biome PORTALLIS_HUB = null;
   public static final Item DIM_MIRROR = null;
   public static final Item I_NIMBUS = null;
+  public static final Item CHARM_XYZ = null;
+
   public static final EntityType<BNNimbus> NIMBUS = setupEntityType("nimbus",
       EntityType.Builder.<BNNimbus>create(BNNimbus::new, EntityClassification.MISC).size(0.5f, 1));
   public static final EntityType<BNThunderhead> THUNDERHEAD = setupEntityType("thunderhead",
@@ -106,7 +111,12 @@ public class BNRegistration
   public static void onBlockRegistry (RegistryEvent.Register<Block> event)
     {
       BN.LOG.info("BNR: Block Registration Event");
-      event.getRegistry().register((new DimDoor()).setRegistryName(MODID, "dim_door"));
+      event.getRegistry().register((new WarpDoor()).setRegistryName(MODID, "dim_door"));
+      event.getRegistry()
+          .register((new WarpDoor(new BlockPos(0, 33, 0), new BlockPos(160, 33, 0),
+              new ResourceLocation(BN.MODID, BN.DIMNAME), new ResourceLocation(BN.MODID, BN.DIMNAME)))
+                  .setRegistryName(MODID, "white_door"));
+
       event.getRegistry().register((new BrazilianLight()).setRegistryName(MODID, "light"));
       event.getRegistry().register((new Killplane()).setRegistryName(MODID, "killplane"));
 
@@ -129,6 +139,9 @@ public class BNRegistration
       // portals
       ev.getRegistry().register(
           new BlockItem(DIM_DOOR, new Item.Properties().group(BN.GROUP)).setRegistryName(DIM_DOOR.getRegistryName()));
+      ev.getRegistry().register(new BlockItem(WHITE_DOOR, new Item.Properties().group(BN.GROUP))
+          .setRegistryName(WHITE_DOOR.getRegistryName()));
+
       ev.getRegistry().register(setup(new DimMirror(), "dim_mirror"));
 
       // technical blocks
@@ -136,6 +149,9 @@ public class BNRegistration
           new BlockItem(LIGHT, new Item.Properties().group(BN.GROUP)).setRegistryName(LIGHT.getRegistryName()));
       ev.getRegistry().register(
           new BlockItem(KILLPLANE, new Item.Properties().group(BN.GROUP)).setRegistryName(KILLPLANE.getRegistryName()));
+
+      // debug items
+      ev.getRegistry().register(setup(new CharmXyz(), "charm_xyz"));
 
       // eggs
       ev.getRegistry().register(setup(new BNINimbus(), "i_nimbus"));

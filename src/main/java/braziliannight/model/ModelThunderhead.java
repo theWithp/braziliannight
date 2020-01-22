@@ -1,7 +1,5 @@
 package braziliannight.model;
 
-import javax.annotation.Nonnull;
-
 import braziliannight.entity.BNThunderhead;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
