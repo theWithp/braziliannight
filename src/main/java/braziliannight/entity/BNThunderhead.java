@@ -4,6 +4,8 @@ import static net.minecraft.entity.SharedMonsterAttributes.KNOCKBACK_RESISTANCE;
 
 import braziliannight.BN;
 import braziliannight.BNRegistration;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -21,6 +23,7 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 
 public class BNThunderhead extends MonsterEntity implements BNEntity
 {
@@ -55,14 +58,14 @@ public class BNThunderhead extends MonsterEntity implements BNEntity
   @Override
   protected void registerGoals ()
     {
-      this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
-      this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
-      this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
-      this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
-      this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
-      this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
-      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
-      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, BNThunderhead.class, true));
+//      this.goalSelector.addGoal(8, new LookAtGoal(this, PlayerEntity.class, 8.0F));
+//      this.goalSelector.addGoal(8, new LookRandomlyGoal(this));
+//      this.goalSelector.addGoal(5, new WaterAvoidingRandomWalkingGoal(this, 0.8D));
+//      this.goalSelector.addGoal(7, new WaterAvoidingRandomWalkingGoal(this, 1.0D));
+//      this.goalSelector.addGoal(4, new MeleeAttackGoal(this, 1.0D, false));
+//      this.targetSelector.addGoal(3, new HurtByTargetGoal(this));
+//      this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, PlayerEntity.class, true));
+//      this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, BNThunderhead.class, true));
 
     }
 
@@ -80,7 +83,7 @@ public class BNThunderhead extends MonsterEntity implements BNEntity
                 resist -= attrib.getValue();
 
               Vec3d dir = target.getPositionVector().subtract(this.getPositionVector()).normalize().mul(2 * resist,
-                  2 * resist, 2 * resist);//TODO jasonize intensity
+                  2 * resist, 2 * resist);// TODO jasonize intensity
               target.addVelocity(dir.x, dir.y, dir.z);
               target.velocityChanged = true;
             }

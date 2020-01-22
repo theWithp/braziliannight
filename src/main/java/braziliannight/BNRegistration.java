@@ -17,6 +17,7 @@ import braziliannight.entity.BNNimbus;
 import braziliannight.entity.BNThunderhead;
 import braziliannight.item.BNINimbus;
 import braziliannight.item.DimMirror;
+import braziliannight.render.RenderThunderhead;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityClassification;
@@ -34,11 +35,13 @@ import net.minecraft.world.dimension.Dimension;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraft.world.gen.GenerationSettings;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.ModDimension;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.IForgeRegistryEntry;
@@ -60,7 +63,7 @@ public class BNRegistration
   public static final EntityType<BNNimbus> NIMBUS = setupEntityType("nimbus",
       EntityType.Builder.<BNNimbus>create(BNNimbus::new, EntityClassification.MISC).size(0.5f, 1));
   public static final EntityType<BNThunderhead> THUNDERHEAD = setupEntityType("thunderhead",
-      EntityType.Builder.<BNThunderhead>create(BNThunderhead::new, EntityClassification.MISC).size(0.5f, 1));
+      EntityType.Builder.<BNThunderhead>create(BNThunderhead::new, EntityClassification.MISC).size(1, 1));
 
   public static final Item THUNDERHEAD_EGG = null;
 
@@ -123,18 +126,18 @@ public class BNRegistration
   public static void onItemRegistry (RegistryEvent.Register<Item> ev)
     {
       BN.LOG.info("BNR: Item Registration Event");
-      //portals
+      // portals
       ev.getRegistry().register(
           new BlockItem(DIM_DOOR, new Item.Properties().group(BN.GROUP)).setRegistryName(DIM_DOOR.getRegistryName()));
       ev.getRegistry().register(setup(new DimMirror(), "dim_mirror"));
 
-      //technical blocks
+      // technical blocks
       ev.getRegistry().register(
           new BlockItem(LIGHT, new Item.Properties().group(BN.GROUP)).setRegistryName(LIGHT.getRegistryName()));
       ev.getRegistry().register(
           new BlockItem(KILLPLANE, new Item.Properties().group(BN.GROUP)).setRegistryName(KILLPLANE.getRegistryName()));
 
-      //eggs
+      // eggs
       ev.getRegistry().register(setup(new BNINimbus(), "i_nimbus"));
       ev.getRegistry().register(new SpawnEggItem(THUNDERHEAD, 0, 0, new Item.Properties().group(BN.GROUP))
           .setRegistryName(MODID, "thunderhead_egg"));
@@ -147,7 +150,12 @@ public class BNRegistration
 
       ev.getRegistry().register(NIMBUS);
       ev.getRegistry().register(THUNDERHEAD);
+    }
 
+  @SubscribeEvent
+  public static void registerModels (ModelRegistryEvent evt)
+    {
+      RenderingRegistry.registerEntityRenderingHandler(BNThunderhead.class, RenderThunderhead::new);
     }
 
   @Nonnull
