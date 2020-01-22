@@ -16,6 +16,7 @@ import braziliannight.dimension.BNDimension;
 import braziliannight.entity.BNNimbus;
 import braziliannight.entity.BNThunderhead;
 import braziliannight.item.BNINimbus;
+import braziliannight.item.CharmXyz;
 import braziliannight.item.DimMirror;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -59,6 +60,8 @@ public class BNRegistration
   public static final Biome PORTALLIS_HUB = null;
   public static final Item DIM_MIRROR = null;
   public static final Item I_NIMBUS = null;
+  public static final Item CHARM_XYZ = null;
+
   public static final EntityType<BNNimbus> NIMBUS = setupEntityType("nimbus",
       EntityType.Builder.<BNNimbus>create(BNNimbus::new, EntityClassification.MISC).size(0.5f, 1));
   public static final EntityType<BNThunderhead> THUNDERHEAD = setupEntityType("thunderhead",
@@ -143,6 +146,9 @@ public class BNRegistration
           new BlockItem(LIGHT, new Item.Properties().group(BN.GROUP)).setRegistryName(LIGHT.getRegistryName()));
       ev.getRegistry().register(
           new BlockItem(KILLPLANE, new Item.Properties().group(BN.GROUP)).setRegistryName(KILLPLANE.getRegistryName()));
+
+      //debug items
+      ev.getRegistry().register(setup(new CharmXyz(), "charm_xyz"));
 
       //eggs
       ev.getRegistry().register(setup(new BNINimbus(), "i_nimbus"));
